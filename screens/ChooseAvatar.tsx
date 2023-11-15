@@ -11,7 +11,12 @@ const ChooseAvatar = () => {
         </Box>
         <Box display="flex" flexDirection="row" flexWrap="wrap">
           <Box position="relative" w={70} h={70} borderRadius={50} overflow="hidden" m={10}>
-            <Image source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais" style={{ width: "100%", height: "100%" }} role="img" alt="ini gambara" />
+            <Image
+              source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
+              style={{ width: "100%", height: "100%", borderWidth: 2, borderColor: "green" }}
+              role="img"
+              alt="ini gambara"
+            />
             <Button
               onPress={() => alert("Belum ada avatar asli")}
               style={{
@@ -27,7 +32,12 @@ const ChooseAvatar = () => {
             />
           </Box>
           <Box position="relative" w={70} h={70} borderRadius={50} overflow="hidden" m={10}>
-            <Image source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais" style={{ width: "100%", height: "100%" }} role="img" alt="ini gambara" />
+            <Image
+              source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
+              style={{ width: "100%", height: "100%", borderWidth: 2, borderColor: "green" }}
+              role="img"
+              alt="ini gambara"
+            />
             <Button
               onPress={() => alert("Belum ada avatar asli")}
               style={{
@@ -43,7 +53,12 @@ const ChooseAvatar = () => {
             />
           </Box>
           <Box position="relative" w={70} h={70} borderRadius={50} overflow="hidden" m={10}>
-            <Image source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais" style={{ width: "100%", height: "100%" }} role="img" alt="ini gambara" />
+            <Image
+              source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
+              style={{ width: "100%", height: "100%", borderWidth: 2, borderColor: "green" }}
+              role="img"
+              alt="ini gambara"
+            />
             <Button
               onPress={() => alert("Belum ada avatar asli")}
               style={{
@@ -59,7 +74,12 @@ const ChooseAvatar = () => {
             />
           </Box>
           <Box position="relative" w={70} h={70} borderRadius={50} overflow="hidden" m={10}>
-            <Image source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais" style={{ width: "100%", height: "100%" }} role="img" alt="ini gambara" />
+            <Image
+              source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
+              style={{ width: "100%", height: "100%", borderWidth: 2, borderColor: "green" }}
+              role="img"
+              alt="ini gambara"
+            />
             <Button
               onPress={() => alert("Belum ada avatar asli")}
               style={{
@@ -75,7 +95,12 @@ const ChooseAvatar = () => {
             />
           </Box>
           <Box position="relative" w={70} h={70} borderRadius={50} overflow="hidden" m={10}>
-            <Image source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais" style={{ width: "100%", height: "100%" }} role="img" alt="ini gambara" />
+            <Image
+              source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
+              style={{ width: "100%", height: "100%", borderWidth: 2, borderColor: "green" }}
+              role="img"
+              alt="ini gambara"
+            />
             <Button
               onPress={() => alert("Belum ada avatar asli")}
               style={{
@@ -91,7 +116,12 @@ const ChooseAvatar = () => {
             />
           </Box>
           <Box position="relative" w={70} h={70} borderRadius={50} overflow="hidden" m={10}>
-            <Image source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais" style={{ width: "100%", height: "100%" }} role="img" alt="ini gambara" />
+            <Image
+              source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
+              style={{ width: "100%", height: "100%", borderWidth: 2, borderColor: "green" }}
+              role="img"
+              alt="ini gambara"
+            />
             <Button
               onPress={() => alert("Belum ada avatar asli")}
               style={{
@@ -107,7 +137,12 @@ const ChooseAvatar = () => {
             />
           </Box>
           <Box position="relative" w={70} h={70} borderRadius={50} overflow="hidden" m={10}>
-            <Image source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais" style={{ width: "100%", height: "100%" }} role="img" alt="ini gambara" />
+            <Image
+              source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
+              style={{ width: "100%", height: "100%", borderWidth: 2, borderColor: "green" }}
+              role="img"
+              alt="ini gambara"
+            />
             <Button
               onPress={() => alert("Belum ada avatar asli")}
               style={{
@@ -123,7 +158,12 @@ const ChooseAvatar = () => {
             />
           </Box>
           <Box position="relative" w={70} h={70} borderRadius={50} overflow="hidden" m={10}>
-            <Image source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais" style={{ width: "100%", height: "100%" }} role="img" alt="ini gambara" />
+            <Image
+              source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
+              style={{ width: "100%", height: "100%", borderWidth: 2, borderColor: "green" }}
+              role="img"
+              alt="ini gambara"
+            />
             <Button
               onPress={() => alert("Belum ada avatar asli")}
               style={{
@@ -139,7 +179,12 @@ const ChooseAvatar = () => {
             />
           </Box>
           <Box position="relative" w={70} h={70} borderRadius={50} overflow="hidden" m={10}>
-            <Image source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais" style={{ width: "100%", height: "100%" }} role="img" alt="ini gambara" />
+            <Image
+              source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
+              style={{ width: "100%", height: "100%", borderWidth: 2, borderColor: "green" }}
+              role="img"
+              alt="ini gambara"
+            />
             <Button
               onPress={() => alert("Belum ada avatar asli")}
               style={{
@@ -155,7 +200,12 @@ const ChooseAvatar = () => {
             />
           </Box>
           <Box position="relative" w={70} h={70} borderRadius={50} overflow="hidden" m={10}>
-            <Image source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais" style={{ width: "100%", height: "100%" }} role="img" alt="ini gambara" />
+            <Image
+              source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
+              style={{ width: "100%", height: "100%", borderWidth: 2, borderColor: "green" }}
+              role="img"
+              alt="ini gambara"
+            />
             <Button
               onPress={() => alert("Belum ada avatar asli")}
               style={{
@@ -171,7 +221,12 @@ const ChooseAvatar = () => {
             />
           </Box>
           <Box position="relative" w={70} h={70} borderRadius={50} overflow="hidden" m={10}>
-            <Image source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais" style={{ width: "100%", height: "100%" }} role="img" alt="ini gambara" />
+            <Image
+              source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
+              style={{ width: "100%", height: "100%", borderWidth: 2, borderColor: "green" }}
+              role="img"
+              alt="ini gambara"
+            />
             <Button
               onPress={() => alert("Belum ada avatar asli")}
               style={{
@@ -187,7 +242,12 @@ const ChooseAvatar = () => {
             />
           </Box>
           <Box position="relative" w={70} h={70} borderRadius={50} overflow="hidden" m={10}>
-            <Image source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais" style={{ width: "100%", height: "100%" }} role="img" alt="ini gambara" />
+            <Image
+              source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
+              style={{ width: "100%", height: "100%", borderWidth: 2, borderColor: "green" }}
+              role="img"
+              alt="ini gambara"
+            />
             <Button
               onPress={() => alert("Belum ada avatar asli")}
               style={{

@@ -1,10 +1,11 @@
-import { Box, Text, Button, ButtonText } from "@gluestack-ui/themed";
+import { Box, Text, Button, ButtonText, Image } from "@gluestack-ui/themed";
 import { TouchableOpacity } from "react-native";
 import React from "react";
 import Bg2 from "../components/Bg2";
 
 const Home = () => {
   const [isDiamond, setIsDiamond] = React.useState(false);
+  const [isAvatar, setIsAvatar] = React.useState(false);
   return (
     <Bg2>
       <Box style={{ marginTop: 25, flex: 1, marginHorizontal: 10, position: "relative" }}>
@@ -16,8 +17,20 @@ const Home = () => {
             </TouchableOpacity>
           </Box>
         </Box>
-        <Box>
-          <Text>Content</Text>
+        <Box style={{ flex: 1, marginTop: 10, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <Box style-={{ postition: "relative" }}>
+            <Image
+              source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
+              style={{ borderRadius: 50, borderWidth: 2, borderColor: "green" }}
+              alt="ini gambara"
+            />
+            <TouchableOpacity style={{ position: "absolute", top: 0, right: 0 }} onPress={() => setIsAvatar(!isAvatar)}>
+              <Text style={{ fontWeight: "bold", fontSize: 20 }}>🖍</Text>
+            </TouchableOpacity>
+          </Box>
+          <Button mb={50}>
+            <Text style={{ fontWeight: "bold", fontSize: 20, color: "white" }}>Start Game</Text>
+          </Button>
         </Box>
         {isDiamond && (
           <Box
@@ -32,7 +45,7 @@ const Home = () => {
               padding: 10,
               display: "flex",
               flexWrap: "wrap",
-              justifyContent: "center",
+              justifyContent: "space-around",
               alignItems: "center",
               flexDirection: "row",
             }}
@@ -75,7 +88,7 @@ const Home = () => {
                 <Text style={{ color: "green", fontWeight: "bold", fontSize: 24, lineHeight: 24 }}>Rp. 84.000</Text>
               </TouchableOpacity>
             </Box>
-            <Box position="absolute" bottom={10} display="flex" flexDirection="row" justifyContent="space-between" alignItems="center" gap={10}>
+            <Box display="flex" flexDirection="row" justifyContent="space-between" alignItems="center" gap={10} mt={30}>
               <Button style={{ backgroundColor: "red" }}>
                 <ButtonText>Cancel</ButtonText>
               </Button>
@@ -83,6 +96,21 @@ const Home = () => {
                 <ButtonText>Purchase</ButtonText>
               </Button>
             </Box>
+          </Box>
+        )}
+        {isAvatar && (
+          <Box style={{ position: "absolute", top: 80, left: 0, right: 0, bottom: 80, backgroundColor: "#869f00", padding: 10, borderRadius: 20, display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <Box>
+              <TouchableOpacity style={{ display: "flex", alignItems: "center", gap: 10, borderWidth: 2, borderColor: "green", padding: 10, borderRadius: 10, backgroundColor: "#e5c900" }}>
+                <Image
+                  source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
+                  style={{ borderRadius: 50, borderWidth: 2, borderColor: "green" }}
+                  alt="ini gambara"
+                />
+                <Text style={{ color: "yellow", fontWeight: "bold", fontSize: 24, lineHeight: 24 }}>25 💎</Text>
+              </TouchableOpacity>
+            </Box>
+            <Text>tess</Text>
           </Box>
         )}
       </Box>
