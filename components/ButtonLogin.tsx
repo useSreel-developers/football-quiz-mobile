@@ -9,7 +9,7 @@ const ButtonLogin = ({navigation}: any) => {
       <Button
         title="Sign in with Google"
         onPress={() =>
-          onGoogleButtonPress().then(() => navigation.navigate('Home'))
+          onGoogleButtonPress().then(() => navigation.navigate('ChooseAvatar'))
         }
       />
     </View>

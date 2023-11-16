@@ -9,9 +9,12 @@ import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import QuizScreen from './screens/QuizScreen';
 import ResultScreen from './screens/ResultScreen';
 import {Provider} from 'react-redux';
-import StackNavigator from './StackNavigator';
+import {config} from '@gluestack-ui/config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-// import store from './redux/store';
+import {GluestackUIProvider} from '@gluestack-ui/themed';
+import ChooseAvatar from './screens/ChooseAvatar';
+import LoginScreen from './screens/LoginScreen';
+import {store} from './redux/store';
 
 const App = () => {
   GoogleSignin.configure({
@@ -21,30 +24,39 @@ const App = () => {
   const Stack = createNativeStackNavigator();
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Quiz"
-          component={QuizScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Result"
-          component={ResultScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Login"
-          component={ButtonLogin}
-          options={{headerShown: false}}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <GluestackUIProvider config={config}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Login"
+              component={LoginScreen}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="ChooseAvatar"
+              component={ChooseAvatar}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Quiz"
+              component={QuizScreen}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Result"
+              component={ResultScreen}
+              options={{headerShown: false}}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </GluestackUIProvider>
+    </Provider>
   );
 };
 

@@ -3,8 +3,11 @@ import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {API} from '../utlis/api';
+import {useDispatch} from 'react-redux';
+import {login} from '../redux/sliceUser';
 
 export const useLogin = () => {
+  const dispatch = useDispatch();
   async function onGoogleButtonPress() {
     // Check if your device supports Google Play
     await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
@@ -17,6 +20,7 @@ export const useLogin = () => {
     };
     API.post('/google-auth', body).then(res => {
       AsyncStorage.setItem('user', res.data.token);
+      dispatch(login(userInfo.user));
     });
 
     // Create a Google credential with the token
