@@ -17,7 +17,7 @@ const Home = () => {
             </TouchableOpacity>
           </Box>
         </Box>
-        <Box style={{ flex: 1, marginTop: 10, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <Box style={{ flex: 1, marginTop: 10, display: "flex", justifyContent: "space-around", alignItems: "center" }}>
           <Box style-={{ postition: "relative" }}>
             <Image
               source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
@@ -89,7 +89,7 @@ const Home = () => {
               </TouchableOpacity>
             </Box>
             <Box display="flex" flexDirection="row" justifyContent="space-between" alignItems="center" gap={10} mt={30}>
-              <Button style={{ backgroundColor: "red" }}>
+              <Button style={{ backgroundColor: "red" }} onPress={() => setIsDiamond(false)}>
                 <ButtonText>Cancel</ButtonText>
               </Button>
               <Button style={{ backgroundColor: "blue" }}>
@@ -99,18 +99,71 @@ const Home = () => {
           </Box>
         )}
         {isAvatar && (
-          <Box style={{ position: "absolute", top: 80, left: 0, right: 0, bottom: 80, backgroundColor: "#869f00", padding: 10, borderRadius: 20, display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <Box>
+          <Box style={{ position: "absolute", top: 80, left: 0, right: 0, bottom: 80, backgroundColor: "#869f00", padding: 5, borderRadius: 20, display: "flex", justifyContent: "space-evenly", alignItems: "center" }}>
+            <Box style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 5, flexWrap: "wrap" }}>
               <TouchableOpacity style={{ display: "flex", alignItems: "center", gap: 10, borderWidth: 2, borderColor: "green", padding: 10, borderRadius: 10, backgroundColor: "#e5c900" }}>
                 <Image
                   source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
                   style={{ borderRadius: 50, borderWidth: 2, borderColor: "green" }}
                   alt="ini gambara"
+                  role="img"
+                />
+                <Text style={{ color: "yellow", fontWeight: "bold", fontSize: 24, lineHeight: 24 }}>25 💎</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={{ display: "flex", alignItems: "center", gap: 10, borderWidth: 2, borderColor: "green", padding: 10, borderRadius: 10, backgroundColor: "#e5c900" }}>
+                <Image
+                  source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
+                  style={{ borderRadius: 50, borderWidth: 2, borderColor: "green" }}
+                  alt="ini gambara"
+                  role="img"
+                />
+                <Text style={{ color: "yellow", fontWeight: "bold", fontSize: 24, lineHeight: 24 }}>25 💎</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={{ display: "flex", alignItems: "center", gap: 10, borderWidth: 2, borderColor: "green", padding: 10, borderRadius: 10, backgroundColor: "#e5c900" }}>
+                <Image
+                  source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
+                  style={{ borderRadius: 50, borderWidth: 2, borderColor: "green" }}
+                  alt="ini gambara"
+                  role="img"
+                />
+                <Text style={{ color: "yellow", fontWeight: "bold", fontSize: 24, lineHeight: 24 }}>25 💎</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={{ display: "flex", alignItems: "center", gap: 10, borderWidth: 2, borderColor: "green", padding: 10, borderRadius: 10, backgroundColor: "#e5c900" }}>
+                <Image
+                  source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
+                  style={{ borderRadius: 50, borderWidth: 2, borderColor: "green" }}
+                  alt="ini gambara"
+                  role="img"
+                />
+                <Text style={{ color: "yellow", fontWeight: "bold", fontSize: 24, lineHeight: 24 }}>25 💎</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={{ display: "flex", alignItems: "center", gap: 10, borderWidth: 2, borderColor: "green", padding: 10, borderRadius: 10, backgroundColor: "#e5c900" }}>
+                <Image
+                  source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
+                  style={{ borderRadius: 50, borderWidth: 2, borderColor: "green" }}
+                  alt="ini gambara"
+                  role="img"
+                />
+                <Text style={{ color: "yellow", fontWeight: "bold", fontSize: 24, lineHeight: 24 }}>25 💎</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={{ display: "flex", alignItems: "center", gap: 10, borderWidth: 2, borderColor: "green", padding: 10, borderRadius: 10, backgroundColor: "#e5c900" }}>
+                <Image
+                  source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
+                  style={{ borderRadius: 50, borderWidth: 2, borderColor: "green" }}
+                  alt="ini gambara"
+                  role="img"
                 />
                 <Text style={{ color: "yellow", fontWeight: "bold", fontSize: 24, lineHeight: 24 }}>25 💎</Text>
               </TouchableOpacity>
             </Box>
-            <Text>tess</Text>
+            <Box display="flex" flexDirection="row" justifyContent="space-between" alignItems="center" gap={10}>
+              <Button style={{ backgroundColor: "red" }} onPress={() => setIsAvatar(false)}>
+                <ButtonText>Cancel</ButtonText>
+              </Button>
+              <Button style={{ backgroundColor: "blue" }}>
+                <ButtonText>Save</ButtonText>
+              </Button>
+            </Box>
           </Box>
         )}
       </Box>

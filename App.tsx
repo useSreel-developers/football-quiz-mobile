@@ -5,6 +5,8 @@ import ChooseAvatar from "./screens/ChooseAvatar";
 import Home from "./screens/Home";
 import FindOpponent from "./screens/FindOpponent";
 import { QueryClient, QueryClientProvider } from "react-query";
+import Auth from "./screens/Auth";
+import Question from "./screens/question";
 
 const queryClient = new QueryClient();
 
@@ -12,7 +14,7 @@ export default function App() {
   return (
     <GluestackUIProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <Home />
+        <Question />
       </QueryClientProvider>
     </GluestackUIProvider>
   );
