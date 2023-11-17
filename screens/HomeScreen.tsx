@@ -1,13 +1,36 @@
 import {Box, Text, Button, ButtonText, Image} from '@gluestack-ui/themed';
 import {TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import Bg2 from '../components/Bg2';
 import {useLogin} from '../hooks/useLogin';
+import {useSelector} from 'react-redux';
+import {RootState} from '../redux/store';
+import {API} from '../utlis/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Home = ({navigation}: any) => {
+  const user = useSelector((state: RootState) => state.user);
   const [isDiamond, setIsDiamond] = React.useState(false);
   const [isAvatar, setIsAvatar] = React.useState(false);
   const {onGoogleLogoutPress} = useLogin();
+
+  const getUserData = async () => {
+    try {
+      const response = await API.get('/check', {
+        headers: {
+          Authorization: `Bearer ${await AsyncStorage.getItem('token')}`,
+        },
+      });
+
+      console.log(response.data.data.avatar);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getUserData();
+  });
   return (
     <Bg2>
       <Box
@@ -28,7 +51,9 @@ const Home = ({navigation}: any) => {
               justifyContent: 'space-between',
               alignItems: 'center',
             }}>
-            <Text style={{color: 'white', fontWeight: 'bold'}}>💎 21</Text>
+            <Text style={{color: 'white', fontWeight: 'bold'}}>
+              💎 {user.user?.diamond}
+            </Text>
             <TouchableOpacity
               style={{
                 backgroundColor: 'yellow',

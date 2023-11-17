@@ -1,20 +1,17 @@
-import {View, Text, Button} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
-import ButtonLogin from './components/ButtonLogin';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import QuizScreen from './screens/QuizScreen';
 import ResultScreen from './screens/ResultScreen';
 import {Provider} from 'react-redux';
 import {config} from '@gluestack-ui/config';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {GluestackUIProvider} from '@gluestack-ui/themed';
 import ChooseAvatar from './screens/ChooseAvatar';
 import LoginScreen from './screens/LoginScreen';
-import {store} from './redux/store';
+import {RootState, store} from './redux/store';
 
 const App = () => {
   GoogleSignin.configure({

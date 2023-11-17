@@ -6,25 +6,13 @@ import {
   InputField,
   ButtonText,
   Text,
+  Pressable,
 } from '@gluestack-ui/themed';
-import {RootState} from '../redux/store';
-import React, {useEffect, useState} from 'react';
 import Bg1 from '../components/Bg1';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useSelector} from 'react-redux';
+import {useAvatar} from '../hooks/useAvatar';
 
 const ChooseAvatar = ({navigation}: any) => {
-  const {user: userLogin} = useSelector((state: RootState) => state.user);
-
-  const [userName, setUserName] = useState<string>();
-  useEffect(() => {
-    const getData = async () => {
-      const username: any = await AsyncStorage.getItem('user');
-      setUserName(username);
-      console.log(username);
-    };
-    getData();
-  }, []);
+  const {avatar, user, avatarId, setAvatarId, updateDataUser} = useAvatar();
 
   return (
     <Bg1>
@@ -36,39 +24,46 @@ const ChooseAvatar = ({navigation}: any) => {
         </Box>
 
         {/* Avatar */}
-        <Box display="flex" flexDirection="row" flexWrap="wrap">
-          <Box
-            position="relative"
-            w={70}
-            h={70}
-            borderRadius={50}
-            overflow="hidden"
-            m={10}>
-            <Image
-              source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
-              style={{
-                width: '100%',
-                height: '100%',
-                borderWidth: 2,
-                borderColor: 'green',
-              }}
-              role="img"
-              alt="ini gambara"
-            />
-            <Button
-              onPress={() => alert('Belum ada avatar asli')}
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                zIndex: 99,
-                height: 70,
-                backgroundColor: 'transparent',
-              }}
-            />
-          </Box>
+        <Box
+          display="flex"
+          flexDirection="row"
+          alignItems="center"
+          justifyContent="center"
+          flexWrap="wrap">
+          {avatar?.map(item => (
+            <Pressable key={item.id} onPress={() => setAvatarId(item.id)}>
+              <Box
+                position="relative"
+                w={100}
+                h={100}
+                borderRadius={50}
+                m={15}
+                overflow="hidden">
+                <Image
+                  source={item.avatar_url}
+                  style={
+                    item.id === avatarId
+                      ? {
+                          width: '100%',
+                          height: '100%',
+                          borderColor: 'white',
+                          borderWidth: 5,
+                          padding: 10,
+                          borderRadius: 150,
+                        }
+                      : {
+                          width: '100%',
+                          height: '100%',
+                          borderWidth: 2,
+                          borderColor: 'green',
+                        }
+                  }
+                  role="img"
+                  alt={item.avatar_name}
+                />
+              </Box>
+            </Pressable>
+          ))}
         </Box>
         {/* End Avatar */}
 
@@ -82,13 +77,17 @@ const ChooseAvatar = ({navigation}: any) => {
             w={'$4/5'}
             my={10}>
             <InputField
-              value={userLogin.email}
-              //   placeholder="Your Name"
+              value={user?.user?.name}
+              placeholder="Your Name"
+              // onChange={handleChangeInputUsername}
               type="text"
               style={{color: 'black'}}
             />
           </Input>
-          <Button onPress={() => navigation.navigate('Home')}>
+          <Button
+            onPress={() =>
+              updateDataUser().then(() => navigation.navigate('Home'))
+            }>
             <ButtonText>Continue</ButtonText>
           </Button>
         </Box>

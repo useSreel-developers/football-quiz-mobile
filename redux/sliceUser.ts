@@ -1,13 +1,16 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 type DataUser = {
-  user: {
+  user?: {
+    id?: number;
     name?: string;
     email?: string;
+    diamond?: string;
+    avatar?: string | null;
   };
 };
 
-const initialState: DataUser = {
+const initialState: DataUser | null = {
   user: {},
 };
 
@@ -16,9 +19,6 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      state.user = action.payload;
-    },
-    check: (state, action) => {
       state.user = action.payload;
     },
     logout: state => {
