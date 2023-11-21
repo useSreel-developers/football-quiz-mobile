@@ -1,7 +1,8 @@
 import { Box, Text, Button, ButtonText, Image } from "@gluestack-ui/themed";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import React from "react";
 import Bg2 from "../components/Bg2";
+import { Icon } from "react-native-elements";
 
 const Home = () => {
   const [isDiamond, setIsDiamond] = React.useState(false);
@@ -17,18 +18,21 @@ const Home = () => {
             </TouchableOpacity>
           </Box>
         </Box>
-        <Box style={{ flex: 1, marginTop: 10, display: "flex", justifyContent: "space-around", alignItems: "center" }}>
+        <Box style={{ flex: 1, marginTop: 10, display: "flex", alignItems: "center" }}>
           <Box style-={{ postition: "relative" }}>
-            <Image
-              source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
-              style={{ borderRadius: 50, borderWidth: 2, borderColor: "green" }}
-              alt="ini gambara"
-            />
-            <TouchableOpacity style={{ position: "absolute", top: 0, right: 0 }} onPress={() => setIsAvatar(!isAvatar)}>
-              <Text style={{ fontWeight: "bold", fontSize: 20 }}>🖍</Text>
+            <TouchableOpacity style={{ position: "relative", zIndex: 2 }} onPress={() => setIsAvatar(!isAvatar)}>
+              <Image
+                source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
+                style={{ borderRadius: 50, borderWidth: 2, borderColor: "green" }}
+                alt="ini gambara"
+              />
+              <View style={{ position: "absolute", top: 0, right: 0, bottom: 0, zIndex: 99, height: 70, backgroundColor: "transparent" }}>
+                <Icon name="edit" type="font-awesome" color="green" style={{}} />
+              </View>
             </TouchableOpacity>
           </Box>
-          <Button mb={50}>
+          <Text style={{ fontWeight: "bold", fontSize: 20, color: "white" }}>Name of the player</Text>
+          <Button mb={50} mt={350}>
             <Text style={{ fontWeight: "bold", fontSize: 20, color: "white" }}>Start Game</Text>
           </Button>
         </Box>
