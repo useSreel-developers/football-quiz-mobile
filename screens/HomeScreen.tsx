@@ -1,4 +1,11 @@
-import {Box, Text, Button, ButtonText, Image} from '@gluestack-ui/themed';
+import {
+  Box,
+  Text,
+  Button,
+  ButtonText,
+  Image,
+  CheckCircleIcon,
+} from '@gluestack-ui/themed';
 import {TouchableOpacity} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import Bg2 from '../components/Bg2';
@@ -8,6 +15,10 @@ import {RootState} from '../redux/store';
 import {API} from '../utlis/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useUser} from '../hooks/useUser';
+import {Alert} from '@gluestack-ui/themed';
+import {AlertIcon} from '@gluestack-ui/themed';
+import {VStack} from '@gluestack-ui/themed';
+import {AlertText} from '@gluestack-ui/themed';
 
 const Home = ({navigation}: any) => {
   const user = useSelector((state: RootState) => state.user);
@@ -15,7 +26,12 @@ const Home = ({navigation}: any) => {
   const [isAvatar, setIsAvatar] = React.useState(false);
   const {onGoogleLogoutPress} = useLogin();
   // const {dataAvatar} = useUser();
+  const [dataUser, setDataUser] = useState<any>(null);
   const [dataAvatar, setDataAvatar] = useState<any>(null);
+  const [avatarId, setAvatarId] = useState<any>(null);
+  const [avatarPrice, setAvatarPrice] = useState<any>(null);
+
+  const urlAvatarUser = dataUser?.avatar?.avatar_url;
 
   const getUserData = async () => {
     try {
@@ -24,24 +40,68 @@ const Home = ({navigation}: any) => {
           Authorization: `Bearer ${await AsyncStorage.getItem('token')}`,
         },
       });
+      setDataUser(response.data.data);
     } catch (error) {
       console.log(error);
     }
   };
 
   const getDataAvatar = async () => {
-    const response = await API.get('/avatars', {
-      headers: {
-        Authorization: `Bearer ${await AsyncStorage.getItem('token')}`,
-      },
-    });
-    setDataAvatar(response.data.data);
+    try {
+      const response = await API.get('/avatars', {
+        headers: {
+          Authorization: `Bearer ${await AsyncStorage.getItem('token')}`,
+        },
+      });
+      setDataAvatar(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleGetAvatarId = async () => {
+    try {
+      if (dataUser.diamond >= avatarPrice) {
+        const body = {
+          name: dataUser.name,
+          avatar: avatarId,
+          // diamond: dataUser.diamond - avatarPrice,
+        };
+        await API.put('/update-profile', body, {
+          headers: {
+            Authorization: `Bearer ${await AsyncStorage.getItem('token')}`,
+          },
+        });
+        return (
+          <Alert action="success">
+            <AlertIcon as={CheckCircleIcon} size="xl" mr="$3" />
+            <VStack space="xs">
+              <AlertText fontWeight="$bold">Berhasil!</AlertText>
+              <AlertText>Berhasil membeli Avatar</AlertText>
+            </VStack>
+          </Alert>
+        );
+      } else {
+        return (
+          <Alert action="error">
+            <AlertIcon as={CheckCircleIcon} size="xl" mr="$3" />
+            <VStack space="xs">
+              <AlertText fontWeight="$bold">Gagal!</AlertText>
+              <AlertText>Diamond tidak cukup</AlertText>
+            </VStack>
+          </Alert>
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
     getUserData();
     getDataAvatar();
-  });
+  }, []);
+
   return (
     <Bg2>
       <Box
@@ -63,7 +123,7 @@ const Home = ({navigation}: any) => {
               alignItems: 'center',
             }}>
             <Text style={{color: 'white', fontWeight: 'bold'}}>
-              💎 {user.user?.diamond}
+              💎 {dataUser?.diamond}
             </Text>
             <TouchableOpacity
               style={{
@@ -92,7 +152,8 @@ const Home = ({navigation}: any) => {
                 uri: 'https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais',
               }}
               style={{borderRadius: 50, borderWidth: 2, borderColor: 'green'}}
-              alt="ini gambara"
+              role="img"
+              alt={dataUser?.avatar?.avatar_name}
             />
             <TouchableOpacity
               style={{position: 'absolute', top: 0, right: 0}}
@@ -424,16 +485,33 @@ const Home = ({navigation}: any) => {
                 return (
                   <TouchableOpacity
                     key={index}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 10,
-                      borderWidth: 2,
-                      borderColor: 'green',
-                      padding: 10,
-                      borderRadius: 10,
-                      backgroundColor: '#e5c900',
-                    }}>
+                    onPress={() => {
+                      setAvatarId(avatar.id);
+                      setAvatarPrice(avatar.price);
+                    }}
+                    style={
+                      avatar.id === avatarId
+                        ? {
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 10,
+                            borderWidth: 2,
+                            borderColor: 'white',
+                            padding: 10,
+                            borderRadius: 10,
+                            backgroundColor: '#e5c900',
+                          }
+                        : {
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 10,
+                            borderWidth: 2,
+                            borderColor: 'green',
+                            padding: 10,
+                            borderRadius: 10,
+                            backgroundColor: '#e5c900',
+                          }
+                    }>
                     <Image
                       source={avatar.avatar_url}
                       style={{
@@ -441,7 +519,7 @@ const Home = ({navigation}: any) => {
                         borderWidth: 2,
                         borderColor: 'green',
                       }}
-                      alt="ini gambara"
+                      alt={avatar.avatar_name}
                       role="img"
                     />
                     <Text
@@ -451,7 +529,10 @@ const Home = ({navigation}: any) => {
                         fontSize: 24,
                         lineHeight: 24,
                       }}>
-                      {avatar.price === 0 ? 'Free' : avatar.price} 💎
+                      {avatar.price === 0 || avatar.owned === true
+                        ? 'Free'
+                        : avatar.price}{' '}
+                      💎
                     </Text>
                   </TouchableOpacity>
                 );
@@ -468,7 +549,12 @@ const Home = ({navigation}: any) => {
                 onPress={() => setIsAvatar(false)}>
                 <ButtonText>Cancel</ButtonText>
               </Button>
-              <Button style={{backgroundColor: 'blue'}}>
+              <Button
+                onPress={() => {
+                  handleGetAvatarId();
+                  setIsAvatar(false);
+                }}
+                style={{backgroundColor: 'blue'}}>
                 <ButtonText>Save</ButtonText>
               </Button>
             </Box>

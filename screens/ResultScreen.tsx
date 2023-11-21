@@ -5,8 +5,8 @@ import {useRoute} from '@react-navigation/native';
 // import { AntDesign } from "@expo/vector-icons";
 
 const ResultScreen = ({navigation}: any) => {
-  const route = useRoute();
-  // const points = route?.params?.points;
+  const route: any = useRoute();
+  const points: any = route?.params?.points;
 
   return (
     <SafeAreaView style={{margin: 10}}>
@@ -68,7 +68,7 @@ const ResultScreen = ({navigation}: any) => {
             textAlign: 'center',
             marginTop: 50,
           }}>
-          {/* {points} */}
+          {points}
         </Text>
       </Pressable>
 

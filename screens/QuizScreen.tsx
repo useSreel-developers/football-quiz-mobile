@@ -1,6 +1,7 @@
 import {StyleSheet, Text, View, Pressable} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
+// import question from '../data/question';
 import question from '../data/question';
 // import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -31,7 +32,7 @@ const QuizScreen = ({navigation}: any) => {
   useEffect(() => {
     if (selectedAnswerIndex !== null) {
       if (selectedAnswerIndex === currentQuestion?.correctAnswerIndex) {
-        setPoints(points => points + 20);
+        setPoints(points => points + 500);
         setAnswerStatus(true);
         answer.push({question: index + 1, answer: true});
       } else {
@@ -234,21 +235,21 @@ const QuizScreen = ({navigation}: any) => {
                   size={20}
                   color="white"
                 />
-              ) : (
-                <Text
-                  style={{
-                    borderColor: '#00FFFF',
-                    textAlign: 'center',
-                    fontSize: 18,
-                    width: 40,
-                    height: 40,
-                    borderRadius: 20,
-                    padding: 10,
-                    color: 'black',
-                  }}>
-                  {item.options}.
-                </Text>
-              )} */}
+              ) : ( */}
+              <Text
+                style={{
+                  borderColor: '#00FFFF',
+                  textAlign: 'center',
+                  fontSize: 18,
+                  width: 40,
+                  height: 40,
+                  borderRadius: 20,
+                  padding: 10,
+                  color: 'black',
+                }}>
+                {item.options}.
+              </Text>
+              {/* )} */}
               <Text
                 style={{
                   marginLeft: 10,

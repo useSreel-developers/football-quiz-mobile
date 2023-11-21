@@ -88,12 +88,18 @@ const ChooseAvatar = ({navigation}: any) => {
               style={{color: 'black'}}
             />
           </Input>
-          <Button
-            onPress={() =>
-              updateDataUser().then(() => navigation.navigate('Home'))
-            }>
-            <ButtonText>Continue</ButtonText>
-          </Button>
+          {avatarId === null ? (
+            <Button style={{backgroundColor: 'grey'}} disabled>
+              <ButtonText>Continue</ButtonText>
+            </Button>
+          ) : (
+            <Button
+              onPress={() =>
+                updateDataUser().then(() => navigation.navigate('Home'))
+              }>
+              <ButtonText>Continue</ButtonText>
+            </Button>
+          )}
         </Box>
         {/* End Input Username */}
       </Box>
