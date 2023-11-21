@@ -11,6 +11,7 @@ const question = () => {
   const [isTrue, setIsTrue] = React.useState<boolean | null>(null);
 
   const handleAnswer = (index: number) => {
+    if (isOpenAnswer) return;
     setIsOpenAnswer(!isOpenAnswer);
     setSelectedAnswer(index);
     setIsTrue(dummy[0].correctAnswerIndex === index);
