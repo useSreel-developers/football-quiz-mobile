@@ -15,7 +15,7 @@ export default function App() {
   return (
     <GluestackUIProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <WinnerScreen />
+        <Home />
       </QueryClientProvider>
     </GluestackUIProvider>
   );

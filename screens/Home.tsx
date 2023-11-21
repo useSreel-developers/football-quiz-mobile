@@ -18,20 +18,21 @@ const Home = () => {
             </TouchableOpacity>
           </Box>
         </Box>
-        <Box style={{ flex: 1, marginTop: 10, display: "flex", alignItems: "center" }}>
+        <Box style={{ flex: 1, marginTop: 90, display: "flex", alignItems: "center" }}>
           <Box style-={{ postition: "relative" }}>
-            <TouchableOpacity style={{ position: "relative", zIndex: 2 }} onPress={() => setIsAvatar(!isAvatar)}>
+            <TouchableOpacity style={{ position: "relative", zIndex: 2, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }} onPress={() => setIsAvatar(!isAvatar)}>
               <Image
                 source="https://img.freepik.com/free-vector/it-takes-two-tango-idiom_1308-17930.jpg?size=626&ext=jpg&ga=GA1.1.237627799.1696464947&semt=ais"
                 style={{ borderRadius: 50, borderWidth: 2, borderColor: "green" }}
                 alt="ini gambara"
+                role="img"
               />
-              <View style={{ position: "absolute", top: 0, right: 0, bottom: 0, zIndex: 99, height: 70, backgroundColor: "transparent" }}>
-                <Icon name="edit" type="font-awesome" color="green" style={{}} />
+              <View style={{ position: "absolute", bottom: 0, right: 0, left: 40, zIndex: 99, backgroundColor: "transparent" }}>
+                <Icon name="edit" type="font-awesome" color="green" />
               </View>
             </TouchableOpacity>
+            <Text style={{ fontWeight: "bold", fontSize: 20, color: "white" }}>Name of the player</Text>
           </Box>
-          <Text style={{ fontWeight: "bold", fontSize: 20, color: "white" }}>Name of the player</Text>
           <Button mb={50} mt={350}>
             <Text style={{ fontWeight: "bold", fontSize: 20, color: "white" }}>Start Game</Text>
           </Button>
