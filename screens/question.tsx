@@ -56,6 +56,7 @@ const question = () => {
                 <TouchableOpacity
                   onPress={() => handleAnswer(index)}
                   style={{
+                    //bg akan berwarna hijau ketika jawaban benar, warna merah ketika jawaban salah
                     backgroundColor: isOpenAnswer && index === dummy[0].correctAnswerIndex ? "green" : selectedAnswer === index ? "red" : "#0077b6",
                     padding: 10,
                     borderRadius: 10,
@@ -67,10 +68,10 @@ const question = () => {
                   key={index}
                 >
                   <Text style={{ fontSize: 15, fontWeight: "bold", color: "#f4f3ee", textAlign: "justify" }}>{`${item.options}. ${item.answer}`}</Text>
-                  {isOpenAnswer && index === dummy[0].correctAnswerIndex && index === selectedAnswer ? (
+                  {isOpenAnswer && index === dummy[0].correctAnswerIndex && index === selectedAnswer ? ( //ikon jika jawaban benar
                     <Icon name="check" type="font-awesome" color="white" />
                   ) : selectedAnswer === index ? (
-                    <Icon name={"times"} type="font-awesome" color="white" />
+                    <Icon name={"times"} type="font-awesome" color="white" /> //ikon ketika jawaban salah
                   ) : (
                     ""
                   )}
