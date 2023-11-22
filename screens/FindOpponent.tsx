@@ -1,9 +1,19 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Bg2 from '../components/Bg2';
-import {Box, Text, ButtonText, Image} from '@gluestack-ui/themed';
+import {Box, Text, ButtonText, Image, Button} from '@gluestack-ui/themed';
 import {TouchableOpacity} from 'react-native';
 
-const FindOpponent = () => {
+const FindOpponent = ({navigation}: any) => {
+  const [time, setTime] = useState(0);
+  useEffect(() => {
+    const interval = () => {
+      setTime(time => time + 1);
+    };
+    if (time === 10) {
+      navigation.navigate('Quiz');
+    }
+    setTimeout(interval, 1000);
+  });
   return (
     <Bg2>
       <Box style={{marginTop: 25, flex: 1, marginHorizontal: 10}}>
@@ -26,7 +36,7 @@ const FindOpponent = () => {
               lineHeight: 80,
               color: 'yellow',
             }}>
-            00:18
+            00:{time < 10 ? `0${time}` : time}
           </Text>
           <Text style={{color: 'white', fontSize: 35, lineHeight: 38}}>
             Finding oponent
@@ -139,6 +149,9 @@ const FindOpponent = () => {
               opponent's name
             </Text>
           </Box>
+          <Button onPress={() => navigation.navigate('Home')}>
+            <ButtonText>Cancel</ButtonText>
+          </Button>
         </Box>
       </Box>
     </Bg2>

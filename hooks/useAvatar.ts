@@ -24,6 +24,12 @@ export const useAvatar = () => {
           Authorization: `Bearer ${await AsyncStorage.getItem('token')}`,
         },
       });
+      // dispatch(
+      //   login({
+      //     ...user.user,
+      //     avatar: avatarId,
+      //   }),
+      // );
     } catch (error) {
       console.log(error);
     }

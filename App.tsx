@@ -12,6 +12,9 @@ import {GluestackUIProvider} from '@gluestack-ui/themed';
 import ChooseAvatar from './screens/ChooseAvatar';
 import LoginScreen from './screens/LoginScreen';
 import {RootState, store} from './redux/store';
+import CheckingUser from './screens/CheckingUser';
+import FindOpponent from './screens/FindOpponent';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
 const App = () => {
   GoogleSignin.configure({
@@ -19,40 +22,53 @@ const App = () => {
       '186171516922-hdtojqacvqs2bdpaaj9qvvmtbvbrgcsb.apps.googleusercontent.com',
   });
   const Stack = createNativeStackNavigator();
+  const queryClient = new QueryClient();
 
   return (
     <Provider store={store}>
-      <GluestackUIProvider config={config}>
-        <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen
-              name="Login"
-              component={LoginScreen}
+      <QueryClientProvider client={queryClient}>
+        <GluestackUIProvider config={config}>
+          <NavigationContainer>
+            <Stack.Navigator>
+              {/* <Stack.Screen
+              name="CheckingUser"
+              component={CheckingUser}
               options={{headerShown: false}}
-            />
-            <Stack.Screen
-              name="ChooseAvatar"
-              component={ChooseAvatar}
-              options={{headerShown: false}}
-            />
-            <Stack.Screen
-              name="Home"
-              component={HomeScreen}
-              options={{headerShown: false}}
-            />
-            <Stack.Screen
-              name="Quiz"
-              component={QuizScreen}
-              options={{headerShown: false}}
-            />
-            <Stack.Screen
-              name="Result"
-              component={ResultScreen}
-              options={{headerShown: false}}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </GluestackUIProvider>
+            /> */}
+              <Stack.Screen
+                name="Login"
+                component={LoginScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="ChooseAvatar"
+                component={ChooseAvatar}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="Home"
+                component={HomeScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="FindOpponent"
+                component={FindOpponent}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="Quiz"
+                component={QuizScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="Result"
+                component={ResultScreen}
+                options={{headerShown: false}}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </GluestackUIProvider>
+      </QueryClientProvider>
     </Provider>
   );
 };

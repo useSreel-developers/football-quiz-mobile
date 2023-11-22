@@ -3,8 +3,12 @@ import React from 'react';
 import Bg1 from '../components/Bg1';
 import {Icon} from 'react-native-elements';
 import {useLogin} from '../hooks/useLogin';
+import {useSelector} from 'react-redux';
+import {RootState} from '../redux/store';
 
 const LoginScreen = ({navigation}: any) => {
+  const user = useSelector((state: RootState) => state.user);
+  console.log(user);
   const {onGoogleButtonPress} = useLogin();
   return (
     <Bg1>

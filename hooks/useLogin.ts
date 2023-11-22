@@ -32,7 +32,7 @@ export const useLogin = () => {
     try {
       await GoogleSignin.revokeAccess();
       await GoogleSignin.signOut();
-      // await AsyncStorage.clear();
+      await AsyncStorage.clear();
       // setData(null);
     } catch (error) {
       console.error(error);

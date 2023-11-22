@@ -1,17 +1,25 @@
 import {createSlice} from '@reduxjs/toolkit';
 
+type Avatar = {
+  id: number;
+  avatar_name: string | null;
+  avatar_url: string | null;
+  price: number;
+};
+type User = {
+  id?: number;
+  name?: string;
+  email?: string;
+  diamond?: string;
+  avatar?: Avatar | null;
+};
+
 type DataUser = {
-  user?: {
-    id?: number;
-    name?: string;
-    email?: string;
-    diamond?: string;
-    avatar?: string | null;
-  };
+  user: User | null;
 };
 
 const initialState: DataUser | null = {
-  user: {},
+  user: null,
 };
 
 export const userSlice = createSlice({
@@ -22,7 +30,7 @@ export const userSlice = createSlice({
       state.user = action.payload;
     },
     logout: state => {
-      state.user = {};
+      state.user = null;
     },
   },
 });
