@@ -7,9 +7,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const StackNavigator = ({navigation}: any) => {
   const user = useSelector((state: RootState) => state.user);
   const token = AsyncStorage.getItem('token');
-  console.log(user);
+  // console.log(user);
 
-  if (user.user === null && !token) {
+  if (user?.user === null && !token) {
     navigation.navigate('Login');
   } else {
     navigation.navigate('Home');
