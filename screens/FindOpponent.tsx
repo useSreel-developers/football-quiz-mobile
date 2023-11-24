@@ -1,11 +1,12 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import Bg2 from '../components/Bg2';
 import {Box, Text, ButtonText, Image, Button} from '@gluestack-ui/themed';
-import {TouchableOpacity} from 'react-native';
+import {View} from 'react-native';
 import {socketConnectionAtom} from '../globals/GlobalData';
 import {useAtom} from 'jotai';
 import {HStack} from '@gluestack-ui/themed';
 import {Spinner} from '@gluestack-ui/themed';
+import AppLottieView from '../components/AppLottieView';
 
 const FindOpponent = ({navigation}: any) => {
   const [time, setTime] = useState<any>();
@@ -15,14 +16,6 @@ const FindOpponent = ({navigation}: any) => {
   useEffect(() => {
     socketConnection.on('findingMatch', (res: any) => {
       setDataPlayer(res.members);
-      // if (dataPlayer.length === 3) {
-      //   return (
-      //     <HStack space="sm">
-      //       <Spinner />
-      //       <Text size="md">Please Wait</Text>
-      //     </HStack>
-      //   );
-      // }
     });
 
     socketConnection.on('findingMatchCountdown', (res: any) => {
@@ -47,12 +40,6 @@ const FindOpponent = ({navigation}: any) => {
   return (
     <Bg2>
       <Box style={{marginTop: 25, flex: 1, marginHorizontal: 10}}>
-        <Box display="flex" alignItems="flex-end">
-          <TouchableOpacity
-            style={{backgroundColor: '#869f00', padding: 5, borderRadius: 50}}>
-            <ButtonText>✖</ButtonText>
-          </TouchableOpacity>
-        </Box>
         <Box
           style={{
             height: '100%',
@@ -60,10 +47,22 @@ const FindOpponent = ({navigation}: any) => {
             alignItems: 'center',
           }}>
           {dataPlayer.length === 3 ? (
-            <HStack space="sm">
-              <Spinner />
-              <Text size="md">Please Wait</Text>
-            </HStack>
+            // <View>
+            //    <ActivityIndicator color="#36d7b7" />
+            //    <HStack space="sm">
+            //     <Spinner />
+            //     <Text size="md">Please Wait</Text>
+            //   </HStack>
+            //  </View>
+            <View>
+              <AppLottieView
+                source={require('../assets/animation/AnimationLoading.json')}
+                autoPlay
+                loop
+                speed={1.5}
+                style={{width: 70, height: 70}}
+              />
+            </View>
           ) : (
             <Text
               style={{

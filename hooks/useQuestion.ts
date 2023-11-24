@@ -78,7 +78,7 @@ export const useQuestion = () => {
           setIndex(index + 1);
           setCounter(10);
           setAvatar(false);
-        }, 3000);
+        }, 5000);
         setAvatar(true);
       }
     };

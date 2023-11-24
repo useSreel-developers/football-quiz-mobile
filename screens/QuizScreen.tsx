@@ -11,6 +11,7 @@ import question from '../data/question';
 import Bg2 from '../components/Bg2';
 import {useQuestion} from '../hooks/useQuestion';
 import {Box, ButtonText, Image} from '@gluestack-ui/themed';
+import AppLottieView from '../components/AppLottieView';
 // import Icon from 'react-native-vector-icons/AntDesign';
 
 const QuizScreen = ({navigation}: any) => {
@@ -77,31 +78,44 @@ const QuizScreen = ({navigation}: any) => {
         </View>
 
         {/* Time Question */}
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            padding: 10,
-          }}>
-          <Pressable style={{width: 70}}>
-            <Text
-              style={{
-                fontSize: 30,
-                textAlign: 'center',
-                fontWeight: 'bold',
-                color: '#ccff33',
-                marginBottom: 10,
-                borderWidth: 2,
-                borderColor: 'green',
-                borderRadius: 10,
-                padding: 10,
-                backgroundColor: 'grey',
-              }}>
-              {counter}
-            </Text>
-          </Pressable>
-        </View>
+
+        {counter === 0 ? (
+          <View>
+            <AppLottieView
+              source={require('../assets/animation/AnimationLoaderQuiz.json')}
+              autoPlay
+              loop
+              speed={1.5}
+              style={{width: 100, height: 100}}
+            />
+          </View>
+        ) : (
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: 10,
+            }}>
+            <Pressable style={{width: 70}}>
+              <Text
+                style={{
+                  fontSize: 30,
+                  textAlign: 'center',
+                  fontWeight: 'bold',
+                  color: '#ccff33',
+                  marginBottom: 10,
+                  borderWidth: 2,
+                  borderColor: 'green',
+                  borderRadius: 10,
+                  padding: 10,
+                  backgroundColor: 'grey',
+                }}>
+                {counter}
+              </Text>
+            </Pressable>
+          </View>
+        )}
         {/* End Time Question */}
 
         {/* Count Answer Question */}

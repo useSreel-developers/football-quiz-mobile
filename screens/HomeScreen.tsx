@@ -27,6 +27,7 @@ import {useQuery} from '@tanstack/react-query';
 import {socketConnectionAtom} from '../globals/GlobalData';
 import {useAtom} from 'jotai';
 import {useAvatar} from '../hooks/useAvatar';
+import AppLottieView from '../components/AppLottieView';
 
 const Home = ({navigation}: any) => {
   const [socketConnection] = useAtom(socketConnectionAtom);
@@ -148,6 +149,7 @@ const Home = ({navigation}: any) => {
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
+                marginBottom: 30,
               }}
               onPress={() => setIsAvatar(!isAvatar)}>
               <Box>
@@ -183,23 +185,45 @@ const Home = ({navigation}: any) => {
               {user?.name}
             </Text>
           </Box>
+
+          {/* <View>
+            <AppLottieView
+              source={require('../assets/animation/AnimationHome.json')}
+              autoPlay
+              loop
+            />
+          </View> */}
+
+          <Box>
+            <AppLottieView
+              source={require('../assets/animation/AnimationHome.json')}
+              autoPlay
+              loop
+              style={{width: 500, height: 200}}
+            />
+          </Box>
+
           <Button
             onPress={handleStartGame}
             mb={50}
-            mt={350}
+            mt={150}
             // backgroundColor="transparent"
             width="70%"
             borderRadius={10}
-            style={{height: 150}}
+            style={{height: 70}}
             // borderWidth={1}
             // paddingHorizontal={20}
-            padding={20}>
+            // padding={20}
+          >
             <ButtonText
               style={{
                 fontWeight: 'bold',
                 fontSize: 25,
                 color: 'white',
                 lineHeight: 25,
+                textAlign: 'center',
+                justifyContent: 'center',
+                alignItems: 'center',
                 // padding: 10,
               }}>
               Start Game

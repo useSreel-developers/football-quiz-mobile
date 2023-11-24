@@ -15,6 +15,7 @@ import {RootState, store} from './redux/store';
 import CheckingUser from './screens/CheckingUser';
 import FindOpponent from './screens/FindOpponent';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import {StatusBar} from 'react-native';
 
 const App = () => {
   GoogleSignin.configure({
@@ -30,16 +31,16 @@ const App = () => {
         <GluestackUIProvider config={config}>
           <NavigationContainer>
             <Stack.Navigator>
-              {/* <Stack.Screen
-              name="CheckingUser"
-              component={CheckingUser}
-              options={{headerShown: false}}
-            /> */}
               <Stack.Screen
                 name="Login"
                 component={LoginScreen}
                 options={{headerShown: false}}
               />
+              {/* <Stack.Screen
+                name="CheckingUser"
+                component={CheckingUser}
+                options={{headerShown: false}}
+              /> */}
               <Stack.Screen
                 name="ChooseAvatar"
                 component={ChooseAvatar}
@@ -67,6 +68,7 @@ const App = () => {
               />
             </Stack.Navigator>
           </NavigationContainer>
+          <StatusBar hidden={true} />
         </GluestackUIProvider>
       </QueryClientProvider>
     </Provider>
