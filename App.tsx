@@ -12,7 +12,7 @@ import {GluestackUIProvider} from '@gluestack-ui/themed';
 import ChooseAvatar from './screens/ChooseAvatar';
 import LoginScreen from './screens/LoginScreen';
 import {RootState, store} from './redux/store';
-import CheckingUser from './screens/CheckingUser';
+import CheckingToken from './screens/CheckingToken';
 import FindOpponent from './screens/FindOpponent';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {StatusBar} from 'react-native';
@@ -33,7 +33,7 @@ const App = () => {
             <Stack.Navigator>
               <Stack.Screen
                 name="CheckingUser"
-                component={CheckingUser}
+                component={CheckingToken}
                 options={{headerShown: false}}
               />
               <Stack.Screen

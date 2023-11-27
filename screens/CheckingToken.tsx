@@ -18,7 +18,6 @@ const StackNavigator = ({navigation}: any) => {
       }
     }, 3000);
     setIsLoading(true);
-    console.log(token);
   };
 
   useEffect(() => {
