@@ -31,7 +31,7 @@ const App = () => {
         <GluestackUIProvider config={config}>
           <NavigationContainer>
             <Stack.Navigator>
-              {/* <Stack.Screen
+              <Stack.Screen
                 name="CheckingUser"
                 component={CheckingToken}
                 options={{headerShown: false}}
@@ -60,7 +60,7 @@ const App = () => {
                 name="Quiz"
                 component={QuizScreen}
                 options={{headerShown: false}}
-              /> */}
+              />
               <Stack.Screen
                 name="Result"
                 component={ResultScreen}

@@ -1,4 +1,4 @@
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, Button, Alert} from 'react-native';
 import React from 'react';
 import WinnerBg from '../components/WinnerBg';
 import {useRoute} from '@react-navigation/native';
@@ -13,7 +13,7 @@ const ResultScreen = ({navigation}: any) => {
           flex: 1,
           display: 'flex',
           alignItems: 'center',
-          marginTop: 185,
+          marginTop: 110,
           position: 'relative',
           marginHorizontal: 10,
         }}>
@@ -115,7 +115,7 @@ const ResultScreen = ({navigation}: any) => {
         <View
           style={{
             position: 'absolute',
-            bottom: 50,
+            bottom: 140,
             backgroundColor: '#869f00',
             width: '100%',
             padding: 10,
@@ -155,7 +155,7 @@ const ResultScreen = ({navigation}: any) => {
                 fontSize: 12,
                 marginLeft: 'auto',
               }}>
-              {points}0
+              0{points}
             </Text>
           </View>
           <View
@@ -191,9 +191,30 @@ const ResultScreen = ({navigation}: any) => {
                 fontSize: 12,
                 marginLeft: 'auto',
               }}>
-              {points}0
+              0{points}
             </Text>
           </View>
+        </View>
+        <View
+          style={{
+            flex: 1,
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'row',
+            gap: 10,
+            position: 'absolute',
+            bottom: 10,
+            justifyContent: 'center',
+          }}>
+          <Button
+            title="RETURN TO HOME"
+            onPress={() => navigation.navigate('Home')}
+            color="red"
+          />
+          <Button
+            title="PLAY AGAIN"
+            onPress={() => Alert.alert('belum diproses')}
+          />
         </View>
       </View>
     </WinnerBg>
