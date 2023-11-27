@@ -161,6 +161,7 @@ const QuizScreen = ({navigation}: any) => {
         </View>
         {/* End Progress Bar */}
 
+        {/* Question */}
         <View
           style={{
             marginTop: 10,
@@ -216,11 +217,7 @@ const QuizScreen = ({navigation}: any) => {
                             height: 60,
                           }
                     }
-                    key={index}
-                    // onPress={() =>
-                    //   selectedAnswerIndex === null && setSelectedAnswerIndex(index)
-                    // }
-                  >
+                    key={index}>
                     {/* Option Answer */}
                     <Text
                       style={{
@@ -269,26 +266,14 @@ const QuizScreen = ({navigation}: any) => {
                 return (
                   <Pressable
                     style={
-                      selectedAnswerIndex === index &&
-                      index === currentQuestion.correctAnswerIndex
+                      selectedAnswerIndex === index
                         ? {
                             flexDirection: 'row',
                             alignItems: 'center',
                             borderColor: '#00FFFF',
                             marginVertical: 15,
                             borderRadius: 10,
-                            backgroundColor: 'green',
-                            height: 60,
-                          }
-                        : selectedAnswerIndex !== null &&
-                          selectedAnswerIndex === index
-                        ? {
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            borderColor: '#00FFFF',
-                            marginVertical: 15,
-                            borderRadius: 10,
-                            backgroundColor: 'red',
+                            backgroundColor: 'grey',
                             height: 60,
                           }
                         : {
@@ -297,7 +282,7 @@ const QuizScreen = ({navigation}: any) => {
                             borderColor: '#00FFFF',
                             marginVertical: 15,
                             borderRadius: 10,
-                            backgroundColor: 'grey',
+                            backgroundColor: 'blue',
                             height: 60,
                           }
                     }
@@ -355,6 +340,7 @@ const QuizScreen = ({navigation}: any) => {
             {/* End Looping Option Answer */}
           </View>
         </View>
+        {/* End Question */}
       </View>
     </Bg2>
   );

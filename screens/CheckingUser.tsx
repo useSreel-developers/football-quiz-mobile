@@ -1,42 +1,47 @@
 import {View, Text} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
-import {RootState} from '../redux/store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppLottieView from '../components/AppLottieView';
+import Bg1 from '../components/Bg1';
 
 const StackNavigator = ({navigation}: any) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const user = useSelector((state: RootState) => state.user);
-  const token = AsyncStorage.getItem('token');
 
-  if (user !== null) {
-    setIsLoading(false);
-  } else {
+  const getToken = async () => {
+    const token = await AsyncStorage.getItem('token');
+    setTimeout(() => {
+      setIsLoading(false);
+      if (token === null) {
+        navigation.navigate('Login');
+      } else {
+        navigation.navigate('Home');
+      }
+    }, 3000);
     setIsLoading(true);
-  }
+    console.log(token);
+  };
 
-  if (user?.user !== null || token !== null) {
-    navigation.navigate('Home');
-  } else {
-    navigation.navigate('Login');
-  }
+  useEffect(() => {
+    getToken();
+  }, []);
 
   return (
-    <View>
-      {isLoading && (
-        <View>
-          <AppLottieView
-            source={require('../assets/animation/AnimationLoading.json')}
-            autoPlay
-            loop
-            speed={1.5}
-            style={{width: 70, height: 70}}
-          />
-          <Text>Tunggu Sebentar</Text>
-        </View>
-      )}
-    </View>
+    <Bg1>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        {isLoading && (
+          <View style={{justifyContent: 'center', alignItems: 'center'}}>
+            <AppLottieView
+              source={require('../assets/animation/AnimationCheckingUser.json')}
+              autoPlay
+              loop
+              speed={0.5}
+              style={{width: 100, height: 100}}
+            />
+            <Text>Tunggu Sebentar</Text>
+          </View>
+        )}
+      </View>
+    </Bg1>
   );
 };
 

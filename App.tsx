@@ -32,15 +32,15 @@ const App = () => {
           <NavigationContainer>
             <Stack.Navigator>
               <Stack.Screen
+                name="CheckingUser"
+                component={CheckingUser}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
                 name="Login"
                 component={LoginScreen}
                 options={{headerShown: false}}
               />
-              {/* <Stack.Screen
-                name="CheckingUser"
-                component={CheckingUser}
-                options={{headerShown: false}}
-              /> */}
               <Stack.Screen
                 name="ChooseAvatar"
                 component={ChooseAvatar}
