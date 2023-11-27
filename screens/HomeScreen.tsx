@@ -155,8 +155,8 @@ const Home = ({navigation}: any) => {
               <Box>
                 <Image
                   source={{
-                    uri: user?.avatar.avatar_url
-                      ? user?.avatar.avatar_url
+                    uri: user?.avatar?.avatar_url
+                      ? user?.avatar?.avatar_url
                       : 'https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=740&t=st=1700712782~exp=1700713382~hmac=05bdd42caf7eadaf1c00c10029f54806c78874461728bc38046315f09e795a16',
                   }}
                   // source={{uri: 'user?.avatar?.avatar_url'}}
@@ -165,7 +165,11 @@ const Home = ({navigation}: any) => {
                     borderWidth: 2,
                     borderColor: 'green',
                   }}
-                  alt={user ? user?.avatar?.avatar_name : 'avatar'}
+                  alt={
+                    user?.avatar?.avatar_name
+                      ? user?.avatar?.avatar_name
+                      : 'avatar'
+                  }
                   role="img"
                 />
               </Box>

@@ -42,7 +42,11 @@ const ChooseAvatar = ({navigation}: any) => {
                     m={15}
                     overflow="hidden">
                     <Image
-                      source={item.avatar_url}
+                      source={{
+                        uri: item?.avatar_url
+                          ? item?.avatar_url
+                          : 'https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=740&t=st=1700712782~exp=1700713382~hmac=05bdd42caf7eadaf1c00c10029f54806c78874461728bc38046315f09e795a16',
+                      }}
                       style={
                         item.id === avatarId
                           ? {
@@ -61,7 +65,7 @@ const ChooseAvatar = ({navigation}: any) => {
                             }
                       }
                       role="img"
-                      alt={item.avatar_name}
+                      alt={item.avatar_name ? item.avatar_name : 'Avatar'}
                     />
                   </Box>
                 </Pressable>
