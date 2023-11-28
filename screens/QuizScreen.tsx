@@ -128,7 +128,7 @@ const QuizScreen = ({navigation}: any) => {
           }}>
           <Text>Your Progress</Text>
           <Text>
-            ({index + 1}/{totalQuestion}) question
+            ({index + 1}/{totalQuestion}) questions
           </Text>
         </View>
         {/* End Count Answer Question */}
@@ -148,7 +148,7 @@ const QuizScreen = ({navigation}: any) => {
           }}>
           <Text
             style={{
-              backgroundColor: '#FFC0CB',
+              // backgroundColor: 'green',
               borderRadius: 12,
               position: 'absolute',
               left: 0,

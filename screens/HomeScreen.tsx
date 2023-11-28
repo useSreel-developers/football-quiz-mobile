@@ -97,7 +97,7 @@ const Home = ({navigation}: any) => {
       ) : ( */}
       <Box
         style={{
-          marginTop: 25,
+          marginTop: 5,
           flex: 1,
           marginHorizontal: 10,
           position: 'relative',
@@ -107,15 +107,17 @@ const Home = ({navigation}: any) => {
           <Box
             style={{
               backgroundColor: '#869f00',
-              padding: 5,
+              padding: 10,
               borderRadius: 10,
               display: 'flex',
               flexDirection: 'row',
               justifyContent: 'space-between',
               alignItems: 'center',
+              borderColor: 'yellow',
+              borderWidth: 1,
             }}>
             <Text style={{color: 'white', fontWeight: 'bold'}}>
-              💎 {user?.diamond}
+              💎 {user?.diamond}{' '}
             </Text>
             <TouchableOpacity
               style={{
@@ -163,7 +165,7 @@ const Home = ({navigation}: any) => {
                   style={{
                     borderRadius: 50,
                     borderWidth: 2,
-                    borderColor: 'green',
+                    borderColor: 'yellow',
                   }}
                   alt={
                     user?.avatar?.avatar_name
@@ -209,16 +211,10 @@ const Home = ({navigation}: any) => {
 
           <Button
             onPress={handleStartGame}
-            mb={50}
-            mt={150}
-            // backgroundColor="transparent"
+            mt={25}
             width="70%"
             borderRadius={10}
-            style={{height: 70}}
-            // borderWidth={1}
-            // paddingHorizontal={20}
-            // padding={20}
-          >
+            style={{height: 50, backgroundColor: '#004aad'}}>
             <ButtonText
               style={{
                 fontWeight: 'bold',
@@ -228,20 +224,33 @@ const Home = ({navigation}: any) => {
                 textAlign: 'center',
                 justifyContent: 'center',
                 alignItems: 'center',
-                // padding: 10,
               }}>
               Start Game
             </ButtonText>
           </Button>
+          <Button
+            onPress={() =>
+              onGoogleLogoutPress().then(() => navigation.navigate('Login'))
+            }
+            width="70%"
+            borderRadius={10}
+            style={{
+              height: 50,
+              backgroundColor: '#ff0000',
+              marginTop: 20,
+            }}>
+            <ButtonText
+              style={{
+                fontWeight: 'bold',
+                fontSize: 20,
+                color: 'white',
+                textAlign: 'center',
+              }}>
+              Logout
+            </ButtonText>
+          </Button>
         </Box>
         {/* End Edit Avatar */}
-
-        <Button
-          onPress={() =>
-            onGoogleLogoutPress().then(() => navigation.navigate('Login'))
-          }>
-          <ButtonText>Logout</ButtonText>
-        </Button>
 
         {/* Modal Diamond */}
         {isDiamond && (

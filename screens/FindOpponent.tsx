@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import Bg2 from '../components/Bg2';
 import {Box, Text, ButtonText, Image, Button} from '@gluestack-ui/themed';
 import {View} from 'react-native';
 import {socketConnectionAtom} from '../globals/GlobalData';
@@ -7,6 +6,7 @@ import {useAtom} from 'jotai';
 import {HStack} from '@gluestack-ui/themed';
 import {Spinner} from '@gluestack-ui/themed';
 import AppLottieView from '../components/AppLottieView';
+import Bg1 from '../components/Bg1';
 
 const FindOpponent = ({navigation}: any) => {
   const [time, setTime] = useState<any>();
@@ -38,7 +38,7 @@ const FindOpponent = ({navigation}: any) => {
   };
 
   return (
-    <Bg2>
+    <Bg1>
       <Box style={{marginTop: 25, flex: 1, marginHorizontal: 10}}>
         <Box
           style={{
@@ -114,12 +114,19 @@ const FindOpponent = ({navigation}: any) => {
             );
           })}
 
-          <Button onPress={handleCancelMatchmaking}>
+          <Button
+            onPress={handleCancelMatchmaking}
+            style={{
+              position: 'absolute',
+              bottom: 10,
+              backgroundColor: 'red',
+              borderRadius: 10,
+            }}>
             <ButtonText>Cancel</ButtonText>
           </Button>
         </Box>
       </Box>
-    </Bg2>
+    </Bg1>
   );
 };
 
