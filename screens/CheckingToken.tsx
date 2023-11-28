@@ -36,7 +36,9 @@ const StackNavigator = ({navigation}: any) => {
               speed={0.5}
               style={{width: 100, height: 100}}
             />
-            <Text>Tunggu Sebentar</Text>
+            <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
+              Tunggu Sebentar
+            </Text>
           </View>
         )}
       </View>

@@ -1,43 +1,37 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Pressable,
-  TouchableOpacity,
-} from 'react-native';
-import React, {useState, useEffect} from 'react';
-// import question from '../data/question';
-import question from '../data/question';
+import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
 import Bg2 from '../components/Bg2';
 import {useQuestion} from '../hooks/useQuestion';
-import {Box, ButtonText, Image} from '@gluestack-ui/themed';
+import {renderQuestion} from '../components/Quiz/renderQuestion';
+import {renderOptions} from '../components/Quiz/renderOptions';
 import AppLottieView from '../components/AppLottieView';
-// import Icon from 'react-native-vector-icons/AntDesign';
+import {Pressable} from '@gluestack-ui/themed';
 
 const QuizScreen = ({navigation}: any) => {
   const {
-    index,
-    data,
-    avatar,
-    answer,
-    dataUser,
-    points,
-    currentQuestion,
+    currentQuestionIndex,
+    allQuestion,
     counter,
-    totalQuestion,
-    progressPercentage,
-    selectedAnswerIndex,
-    setSelectedAnswerIndex,
+    setCurrentQuestionIndex,
+    setCurrentOptionSelected,
+    setCorrectOption,
+    setShowNextButton,
+    setIsOptionDisabled,
   } = useQuestion();
 
-  useEffect(() => {
-    if (index + 1 > data.length) {
-      navigation.navigate('Result', {
-        answers: answer,
-        points: points,
-      });
+  const handleNext = () => {
+    if (currentQuestionIndex === allQuestion.length - 1) {
+      // Last Question
+      // Show Modal Score
+      navigation.navigate('Result');
+    } else {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setCurrentOptionSelected(null);
+      setCorrectOption(null);
+      setShowNextButton(false);
+      setIsOptionDisabled(false);
     }
-  }, [currentQuestion]);
+  };
 
   return (
     <Bg2>
@@ -73,12 +67,11 @@ const QuizScreen = ({navigation}: any) => {
           }}>
           <Text style={{fontSize: 20}}>🏆</Text>
           <Text style={{fontSize: 20, fontWeight: 'bold', color: '#ffb703'}}>
-            {points}
+            {/* {points} */}
           </Text>
         </View>
 
         {/* Time Question */}
-
         {counter === 0 ? (
           <View>
             <AppLottieView
@@ -128,7 +121,7 @@ const QuizScreen = ({navigation}: any) => {
           }}>
           <Text>Your Progress</Text>
           <Text>
-            ({index + 1}/{totalQuestion}) question
+            ({currentQuestionIndex + 1}/{allQuestion.length}) questions
           </Text>
         </View>
         {/* End Count Answer Question */}
@@ -148,199 +141,21 @@ const QuizScreen = ({navigation}: any) => {
           }}>
           <Text
             style={{
-              backgroundColor: '#FFC0CB',
+              // backgroundColor: 'green',
               borderRadius: 12,
               position: 'absolute',
               left: 0,
               height: 18,
               right: 0,
-              width: `${progressPercentage}%`,
+              // width: `${progressPercentage}%`,
               marginTop: 20,
             }}
           />
         </View>
         {/* End Progress Bar */}
 
-        {/* Question */}
-        <View
-          style={{
-            marginTop: 10,
-            padding: 10,
-            borderRadius: 6,
-          }}>
-          <Text
-            style={{
-              fontSize: 22,
-              fontWeight: 'bold',
-              fontFamily: 'serif',
-              color: 'white',
-              marginBottom: 20,
-            }}>
-            {currentQuestion?.question}
-          </Text>
-          <View>
-            {/* Looping Option Answer */}
-            {currentQuestion?.options.map((item: any, index: any) => {
-              if (counter <= 0) {
-                return (
-                  <Pressable
-                    style={
-                      selectedAnswerIndex === index &&
-                      index === currentQuestion.correctAnswerIndex
-                        ? {
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            borderColor: '#00FFFF',
-                            marginVertical: 15,
-                            borderRadius: 10,
-                            backgroundColor: 'green',
-                            height: 60,
-                          }
-                        : selectedAnswerIndex !== null &&
-                          selectedAnswerIndex === index
-                        ? {
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            borderColor: '#00FFFF',
-                            marginVertical: 15,
-                            borderRadius: 10,
-                            backgroundColor: 'red',
-                            height: 60,
-                          }
-                        : {
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            borderColor: '#00FFFF',
-                            marginVertical: 15,
-                            borderRadius: 10,
-                            backgroundColor: 'grey',
-                            height: 60,
-                          }
-                    }
-                    key={index}>
-                    {/* Option Answer */}
-                    <Text
-                      style={{
-                        borderColor: '#00FFFF',
-                        textAlign: 'center',
-                        fontSize: 18,
-                        width: 40,
-                        height: 40,
-                        borderRadius: 20,
-                        padding: 10,
-                        color: 'white',
-                      }}>
-                      {item.options}.
-                    </Text>
-                    {/* End Option Answer */}
-
-                    {/* Answer */}
-                    <Text
-                      style={{
-                        marginLeft: 10,
-                        fontSize: 18,
-                        alignItems: 'center',
-                        color: 'white',
-                      }}>
-                      {item.answer}
-                    </Text>
-                    {/* End Answer */}
-
-                    {avatar && selectedAnswerIndex === index ? (
-                      <Image
-                        source={dataUser?.avatar?.avatar_url}
-                        style={{
-                          width: 40,
-                          height: 40,
-                          borderRadius: 20,
-                          marginLeft: 20,
-                          marginRight: 10,
-                        }}
-                        role="img"
-                        alt="Avatar User"
-                      />
-                    ) : null}
-                  </Pressable>
-                );
-              } else {
-                return (
-                  <Pressable
-                    style={
-                      selectedAnswerIndex === index
-                        ? {
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            borderColor: '#00FFFF',
-                            marginVertical: 15,
-                            borderRadius: 10,
-                            backgroundColor: 'grey',
-                            height: 60,
-                          }
-                        : {
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            borderColor: '#00FFFF',
-                            marginVertical: 15,
-                            borderRadius: 10,
-                            backgroundColor: 'blue',
-                            height: 60,
-                          }
-                    }
-                    key={index}
-                    onPress={() =>
-                      selectedAnswerIndex === null &&
-                      setSelectedAnswerIndex(index)
-                    }>
-                    {/* Option Answer */}
-                    <Text
-                      style={{
-                        borderColor: '#00FFFF',
-                        textAlign: 'center',
-                        fontSize: 18,
-                        width: 40,
-                        height: 40,
-                        borderRadius: 20,
-                        padding: 10,
-                        color: 'white',
-                      }}>
-                      {item.options}.
-                    </Text>
-                    {/* End Option Answer */}
-
-                    {/* Answer */}
-                    <Text
-                      style={{
-                        marginLeft: 10,
-                        fontSize: 18,
-                        alignItems: 'center',
-                        color: 'white',
-                      }}>
-                      {item.answer}
-                    </Text>
-                    {/* End Answer */}
-
-                    {avatar && selectedAnswerIndex === index ? (
-                      <Image
-                        source={dataUser?.avatar?.avatar_url}
-                        style={{
-                          width: 40,
-                          height: 40,
-                          borderRadius: 20,
-                          marginLeft: 20,
-                          marginRight: 10,
-                        }}
-                        role="img"
-                        alt="Avatar User"
-                      />
-                    ) : null}
-                  </Pressable>
-                );
-              }
-            })}
-            {/* End Looping Option Answer */}
-          </View>
-        </View>
-        {/* End Question */}
+        {renderQuestion()}
+        {renderOptions()}
       </View>
     </Bg2>
   );

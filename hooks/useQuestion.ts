@@ -1,72 +1,33 @@
 import React, {useState, useEffect} from 'react';
-import question from '../data/question';
+import {data} from '../data/question';
+
 import {API} from '../utlis/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const useQuestion = () => {
-  const data = question;
-
-  const totalQuestion = data.length;
-
-  const answer: any = [];
-
-  // points
-  const [points, setPoints] = useState(0);
-  // index of the question
-  const [index, setIndex] = useState(0);
-  // answer status (true or false)
-  const [answerStatus, setAnswerStatus] = useState<boolean | null>(null);
-  // selected answer
-  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
-  // counter
+  const allQuestion = data;
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [currentOptionSelected, setCurrentOptionSelected] = useState(null);
+  const [correctOption, setCorrectOption] = useState<string | null>(null);
+  const [isOptionDisabled, setIsOptionDisabled] = useState(false);
+  const [score, setScore] = useState(0);
+  const [showNextButton, setShowNextButton] = useState(false);
   const [counter, setCounter] = useState(10);
-  // avatar
-  const [avatar, setAvatar] = useState<boolean>(false);
-  //   interval
+  const [avatar, setAvatar] = useState(false);
+
   let interval: any = null;
-  // progress bar
-  const progressPercentage = Math.floor((index / totalQuestion) * 100);
 
-  const currentQuestion = data[index];
-
-  const [dataUser, setDataUser] = useState<any>(null);
-
-  useEffect(() => {
-    const getUser = async () => {
-      try {
-        const response = await API.get('/check', {
-          headers: {
-            Authorization: `Bearer ${await AsyncStorage.getItem('token')}`,
-          },
-        });
-        setDataUser(response.data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getUser();
-  }, []);
-
-  // refetch points answer
-  useEffect(() => {
-    if (selectedAnswerIndex !== null) {
-      if (selectedAnswerIndex === currentQuestion?.correctAnswerIndex) {
-        setPoints(points => points + 100 * counter);
-        setAnswerStatus(true);
-        answer.push({question: index + 1, answer: true});
-      } else {
-        setAnswerStatus(false);
-        answer.push({question: index + 1, answer: false});
-      }
+  const validateAnswer = (selectedOption: any) => {
+    let correct_option = allQuestion[currentQuestionIndex]['correct_option'];
+    setCurrentOptionSelected(selectedOption);
+    setCorrectOption(correct_option);
+    if (selectedOption === correct_option) {
+      // set score
+      setScore(score => score + 1);
     }
-  }, [selectedAnswerIndex]);
 
-  // refetch answer null
-  useEffect(() => {
-    setSelectedAnswerIndex(null);
-    setAnswerStatus(null);
-  }, [index]);
-
+    // show next button
+  };
   // refetch interval question
   useEffect(() => {
     const myInterval = () => {
@@ -75,7 +36,7 @@ export const useQuestion = () => {
       }
       if (counter === 0) {
         setTimeout(() => {
-          setIndex(index + 1);
+          setCurrentQuestionIndex(currentQuestionIndex + 1);
           setCounter(10);
           setAvatar(false);
         }, 5000);
@@ -90,24 +51,24 @@ export const useQuestion = () => {
     };
   }, [counter]);
 
-  useEffect(() => {
-    if (!interval) {
-      setCounter(10);
-    }
-  }, [index]);
+  // useEffect(() => {
+  //   if (!interval) {
+  //     setCounter(10);
+  //   }
+  // }, [index]);
 
   return {
-    index,
-    data,
-    avatar,
-    answer,
-    points,
-    dataUser,
-    currentQuestion,
+    currentQuestionIndex,
     counter,
-    totalQuestion,
-    progressPercentage,
-    selectedAnswerIndex,
-    setSelectedAnswerIndex,
+    allQuestion,
+    validateAnswer,
+    isOptionDisabled,
+    correctOption,
+    currentOptionSelected,
+    setCurrentQuestionIndex,
+    setCurrentOptionSelected,
+    setCorrectOption,
+    setShowNextButton,
+    setIsOptionDisabled,
   };
 };
