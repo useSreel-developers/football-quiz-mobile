@@ -43,7 +43,7 @@ export const renderOptions = () => {
                       : COLORS.secondary + '40',
                   backgroundColor:
                     option.asnwer == correctOption
-                      ? COLORS.success + '20'
+                      ? "COLORS.success + '20'"
                       : option == currentOptionSelected
                       ? COLORS.error + '20'
                       : COLORS.secondary + '40',

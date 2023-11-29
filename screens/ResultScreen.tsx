@@ -55,7 +55,9 @@ const ResultScreen = ({navigation}: any) => {
           <Text style={{color: 'white', fontWeight: '900', fontSize: 10}}>
             NAME OF THE PLAYER
           </Text>
-          <Text style={{color: 'red', fontWeight: '900'}}>{points}</Text>
+          <Text style={{color: '#468500', fontWeight: '900', fontSize: 20}}>
+            {points}777
+          </Text>
           <Text
             style={{
               fontSize: 30,
@@ -92,7 +94,7 @@ const ResultScreen = ({navigation}: any) => {
             NAME OF THE PLAYER
           </Text>
           <Text style={{color: '#468500', fontWeight: '900', fontSize: 20}}>
-            {points}
+            {points}777
           </Text>
         </View>
         <View
@@ -102,7 +104,7 @@ const ResultScreen = ({navigation}: any) => {
             alignItems: 'center',
             position: 'absolute',
             right: 10,
-            top: 100,
+            top: 120,
           }}>
           {/*AVATAR JUARA 3*/}
           <Image
@@ -122,7 +124,7 @@ const ResultScreen = ({navigation}: any) => {
             NAME OF THE PLAYER
           </Text>
           <Text style={{color: '#468500', fontWeight: '900', fontSize: 20}}>
-            {points}
+            {points}777
           </Text>
         </View>
         <View
@@ -226,7 +228,7 @@ const ResultScreen = ({navigation}: any) => {
           />
           <Button
             title="PLAY AGAIN"
-            onPress={() => Alert.alert('belum diproses')}
+            onPress={() => navigation.navigate('FindOpponent')}
             color={'blue'}
           />
         </View>
