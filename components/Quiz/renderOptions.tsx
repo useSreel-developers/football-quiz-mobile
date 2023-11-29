@@ -13,7 +13,7 @@ export const renderOptions = () => {
     validateAnswer,
   } = useQuestion();
   return (
-    <View>
+    <View style={{width: '100%'}}>
       {allQuestion[currentQuestionIndex]?.options.map((option: any) => {
         if (counter <= 0) {
           return (

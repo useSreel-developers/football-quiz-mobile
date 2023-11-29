@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import Bg2 from '../components/Bg2';
 import {Box, Text, ButtonText, Image, Button} from '@gluestack-ui/themed';
-import {View} from 'react-native';
+import {View, Alert} from 'react-native';
 import {socketConnectionAtom} from '../globals/GlobalData';
 import {useAtom} from 'jotai';
 import {HStack} from '@gluestack-ui/themed';
 import {Spinner} from '@gluestack-ui/themed';
 import AppLottieView from '../components/AppLottieView';
+import Bg1 from './../components/Bg1';
 
 const FindOpponent = ({navigation}: any) => {
   const [time, setTime] = useState<any>();
@@ -38,7 +38,7 @@ const FindOpponent = ({navigation}: any) => {
   };
 
   return (
-    <Bg2>
+    <Bg1>
       <Box style={{marginTop: 25, flex: 1, marginHorizontal: 10}}>
         <Box
           style={{
@@ -64,20 +64,62 @@ const FindOpponent = ({navigation}: any) => {
               />
             </View>
           ) : (
-            <Text
-              style={{
-                fontWeight: 'bold',
-                fontSize: 72,
-                lineHeight: 80,
-                color: 'yellow',
-              }}>
-              00:{time < 10 ? `0${time}` : time}
-            </Text>
+            <View style={{flexDirection: 'row'}}>
+              <Text
+                style={{
+                  fontWeight: 'bold',
+                  fontSize: 72,
+                  lineHeight: 85,
+                  color: '#ffb703',
+                  backgroundColor: '#004aad',
+                  borderRadius: 10,
+                  borderColor: '#ffb703',
+                  borderWidth: 2,
+                  paddingHorizontal: 5,
+                }}>
+                00
+              </Text>
+              <Text
+                style={{
+                  fontWeight: 'bold',
+                  fontSize: 72,
+                  lineHeight: 85,
+                  color: '#ffb703',
+                }}>
+                {''}:{''}
+              </Text>
+              <Text
+                style={{
+                  fontWeight: 'bold',
+                  fontSize: 72,
+                  lineHeight: 85,
+                  color: '#ffb703',
+                  backgroundColor: '#004aad',
+                  borderRadius: 10,
+                  borderColor: '#ffb703',
+                  borderWidth: 1,
+                  paddingHorizontal: 5,
+                }}>
+                {!time ? '00' : time < 10 ? `0${time}` : time}
+              </Text>
+            </View>
           )}
-          <Text style={{color: 'white', fontSize: 35, lineHeight: 38}}>
-            Finding oponent
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 20,
+              lineHeight: 38,
+              fontWeight: 'bold',
+            }}>
+            Waiting for oponent...
           </Text>
-          <Text style={{color: 'white', fontSize: 35, lineHeight: 36}}>
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 35,
+              lineHeight: 36,
+              fontWeight: 'bold',
+            }}>
             {dataPlayer.length}/5
           </Text>
           {dataPlayer.map((player: any, index: any) => {
@@ -89,11 +131,11 @@ const FindOpponent = ({navigation}: any) => {
                   flexDirection: 'row',
                   justifyContent: 'flex-start',
                   alignItems: 'center',
-                  backgroundColor: 'blue',
+                  backgroundColor: '#004aad',
                   width: '100%',
                   borderRadius: 10,
                   borderWidth: 2,
-                  borderColor: 'white',
+                  borderColor: '#ffb703',
                   gap: 10,
                   padding: 5,
                   marginBottom: 5,
@@ -105,21 +147,42 @@ const FindOpponent = ({navigation}: any) => {
                       : 'https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=740&t=st=1700712782~exp=1700713382~hmac=05bdd42caf7eadaf1c00c10029f54806c78874461728bc38046315f09e795a16',
                   }}
                   alt="avatar"
-                  style={{borderRadius: 50, width: 50, height: 50}}
+                  style={{
+                    borderRadius: 50,
+                    width: 40,
+                    height: 40,
+                    borderColor: '#ffb703',
+                    borderWidth: 2,
+                  }}
                 />
-                <Text style={{color: 'white', fontSize: 25, lineHeight: 25}}>
+                <Text
+                  style={{
+                    color: '#ffb703',
+                    fontSize: 20,
+                    lineHeight: 20,
+                    fontWeight: 'bold',
+                  }}>
                   {player.userName}
                 </Text>
               </Box>
             );
           })}
 
-          <Button onPress={handleCancelMatchmaking}>
+          <Button
+            onPress={handleCancelMatchmaking}
+            style={{
+              position: 'absolute',
+              bottom: 10,
+              backgroundColor: '#ff3131',
+              borderColor: 'white',
+              borderRadius: 10,
+              borderWidth: 1,
+            }}>
             <ButtonText>Cancel</ButtonText>
           </Button>
         </Box>
       </Box>
-    </Bg2>
+    </Bg1>
   );
 };
 

@@ -107,7 +107,7 @@ const Home = ({navigation}: any) => {
               flexDirection: 'row',
               justifyContent: 'space-between',
               alignItems: 'center',
-              borderColor: 'yellow',
+              borderColor: '#ffb703',
               borderWidth: 1,
             }}>
             <Text style={{color: 'white', fontWeight: 'bold'}}>
@@ -115,7 +115,7 @@ const Home = ({navigation}: any) => {
             </Text>
             <TouchableOpacity
               style={{
-                backgroundColor: 'yellow',
+                backgroundColor: '#ffb703',
                 paddingHorizontal: 10,
                 borderRadius: 10,
               }}
@@ -145,7 +145,7 @@ const Home = ({navigation}: any) => {
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
-                marginBottom: 30,
+                marginBottom: 10,
               }}
               onPress={() => setIsAvatar(!isAvatar)}>
               <Box>
@@ -288,7 +288,7 @@ const Home = ({navigation}: any) => {
                 }}>
                 <Text
                   style={{
-                    color: 'yellow',
+                    color: '#ffb703',
                     fontWeight: 'bold',
                     fontSize: 24,
                     lineHeight: 24,
@@ -297,7 +297,7 @@ const Home = ({navigation}: any) => {
                 </Text>
                 <Text
                   style={{
-                    color: 'yellow',
+                    color: '#ffb703',
                     fontWeight: 'bold',
                     fontSize: 24,
                     lineHeight: 24,
@@ -306,7 +306,7 @@ const Home = ({navigation}: any) => {
                 </Text>
                 <Text
                   style={{
-                    color: 'yellow',
+                    color: '#ffb703',
                     fontWeight: 'bold',
                     fontSize: 24,
                     lineHeight: 24,
@@ -315,7 +315,7 @@ const Home = ({navigation}: any) => {
                 </Text>
                 <Text
                   style={{
-                    color: 'yellow',
+                    color: '#ffb703',
                     fontWeight: 'bold',
                     fontSize: 24,
                     lineHeight: 24,
@@ -347,7 +347,7 @@ const Home = ({navigation}: any) => {
                 }}>
                 <Text
                   style={{
-                    color: 'yellow',
+                    color: '#ffb703',
                     fontWeight: 'bold',
                     fontSize: 24,
                     lineHeight: 24,
@@ -356,7 +356,7 @@ const Home = ({navigation}: any) => {
                 </Text>
                 <Text
                   style={{
-                    color: 'yellow',
+                    color: '#ffb703',
                     fontWeight: 'bold',
                     fontSize: 24,
                     lineHeight: 24,
@@ -365,7 +365,7 @@ const Home = ({navigation}: any) => {
                 </Text>
                 <Text
                   style={{
-                    color: 'yellow',
+                    color: '#ffb703',
                     fontWeight: 'bold',
                     fontSize: 24,
                     lineHeight: 24,
@@ -374,7 +374,7 @@ const Home = ({navigation}: any) => {
                 </Text>
                 <Text
                   style={{
-                    color: 'yellow',
+                    color: '#ffb703',
                     fontWeight: 'bold',
                     fontSize: 24,
                     lineHeight: 24,
@@ -406,7 +406,7 @@ const Home = ({navigation}: any) => {
                 }}>
                 <Text
                   style={{
-                    color: 'yellow',
+                    color: '#ffb703',
                     fontWeight: 'bold',
                     fontSize: 24,
                     lineHeight: 24,
@@ -415,7 +415,7 @@ const Home = ({navigation}: any) => {
                 </Text>
                 <Text
                   style={{
-                    color: 'yellow',
+                    color: '#ffb703',
                     fontWeight: 'bold',
                     fontSize: 24,
                     lineHeight: 24,
@@ -424,7 +424,7 @@ const Home = ({navigation}: any) => {
                 </Text>
                 <Text
                   style={{
-                    color: 'yellow',
+                    color: '#ffb703',
                     fontWeight: 'bold',
                     fontSize: 24,
                     lineHeight: 24,
@@ -433,7 +433,7 @@ const Home = ({navigation}: any) => {
                 </Text>
                 <Text
                   style={{
-                    color: 'yellow',
+                    color: '#ffb703',
                     fontWeight: 'bold',
                     fontSize: 24,
                     lineHeight: 24,
@@ -465,7 +465,7 @@ const Home = ({navigation}: any) => {
                 }}>
                 <Text
                   style={{
-                    color: 'yellow',
+                    color: '#ffb703',
                     fontWeight: 'bold',
                     fontSize: 24,
                     lineHeight: 24,
@@ -474,7 +474,7 @@ const Home = ({navigation}: any) => {
                 </Text>
                 <Text
                   style={{
-                    color: 'yellow',
+                    color: '#ffb703',
                     fontWeight: 'bold',
                     fontSize: 24,
                     lineHeight: 24,
@@ -483,7 +483,7 @@ const Home = ({navigation}: any) => {
                 </Text>
                 <Text
                   style={{
-                    color: 'yellow',
+                    color: '#ffb703',
                     fontWeight: 'bold',
                     fontSize: 24,
                     lineHeight: 24,
@@ -492,7 +492,7 @@ const Home = ({navigation}: any) => {
                 </Text>
                 <Text
                   style={{
-                    color: 'yellow',
+                    color: '#ffb703',
                     fontWeight: 'bold',
                     fontSize: 24,
                     lineHeight: 24,
@@ -598,7 +598,7 @@ const Home = ({navigation}: any) => {
                     />
                     <Text
                       style={{
-                        color: 'yellow',
+                        color: '#ffb703',
                         fontWeight: 'bold',
                         fontSize: 24,
                         lineHeight: 24,
