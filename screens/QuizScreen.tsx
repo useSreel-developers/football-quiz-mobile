@@ -1,37 +1,57 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import Bg2 from '../components/Bg2';
 import {useQuestion} from '../hooks/useQuestion';
 import {renderQuestion} from '../components/Quiz/renderQuestion';
 import {renderOptions} from '../components/Quiz/renderOptions';
 import AppLottieView from '../components/AppLottieView';
 import {Pressable} from '@gluestack-ui/themed';
+import {useAtom} from 'jotai';
+import {
+  options,
+  roomId,
+  socketConnectionAtom,
+  temporaryAnswer,
+} from '../globals/GlobalData';
 
 const QuizScreen = ({navigation}: any) => {
-  const {
-    currentQuestionIndex,
-    allQuestion,
-    counter,
-    setCurrentQuestionIndex,
-    setCurrentOptionSelected,
-    setCorrectOption,
-    setShowNextButton,
-    setIsOptionDisabled,
-  } = useQuestion();
+  const [socketConnection] = useAtom(socketConnectionAtom);
+  const [roomIdQuiz, setRoomIdQuiz] = useAtom(roomId);
+  const [optionsUser, setOptionsUser] = useAtom(options);
+  const {currentQuestionIndex, dataQuestion, dataUser, counter, score} =
+    useQuestion();
 
-  const handleNext = () => {
-    if (currentQuestionIndex === allQuestion.length - 1) {
-      // Last Question
-      // Show Modal Score
-      navigation.navigate('Result');
+  const [temporaryAnswerUser, setTemporaryAnswerUser] =
+    useAtom(temporaryAnswer);
+
+  useEffect(() => {
+    let answer;
+    if (optionsUser?.selectedOptionIndex === 0) {
+      answer = 'A';
+    } else if (optionsUser?.selectedOptionIndex === 1) {
+      answer = 'B';
+    } else if (optionsUser?.selectedOptionIndex === 2) {
+      answer = 'C';
+    } else if (optionsUser?.selectedOptionIndex === 3) {
+      answer = 'D';
     } else {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-      setCurrentOptionSelected(null);
-      setCorrectOption(null);
-      setShowNextButton(false);
-      setIsOptionDisabled(false);
+      answer = null;
     }
-  };
+
+    if (counter === 0) {
+      socketConnection.emit('storeScore', {
+        userId: dataUser?.id,
+        userAvatar: dataUser?.avatar?.avatar_url,
+        roomId: roomIdQuiz,
+        answer,
+        score: score,
+      });
+    }
+
+    socketConnection.on('updateTemporaryAnswer', res => {
+      setTemporaryAnswerUser(res.temporaryAnswer);
+    });
+  }, [counter]);
 
   return (
     <Bg2>
@@ -67,7 +87,7 @@ const QuizScreen = ({navigation}: any) => {
           }}>
           <Text style={{fontSize: 20}}>🏆</Text>
           <Text style={{fontSize: 20, fontWeight: 'bold', color: '#ffb703'}}>
-            {/* {points} */}
+            {score}
           </Text>
         </View>
 
@@ -121,7 +141,7 @@ const QuizScreen = ({navigation}: any) => {
           }}>
           <Text>Your Progress</Text>
           <Text>
-            ({currentQuestionIndex + 1}/{allQuestion.length}) questions
+            ({currentQuestionIndex + 1}/{dataQuestion.length}) questions
           </Text>
         </View>
         {/* End Count Answer Question */}

@@ -36,8 +36,6 @@ const Home = ({navigation}: any) => {
   const [isDiamond, setIsDiamond] = React.useState(false);
   const [isAvatar, setIsAvatar] = React.useState(false);
   const {onGoogleLogoutPress} = useLogin();
-  // const {dataAvatar} = useUser();
-  const [dataUser, setDataUser] = useState<any>(null);
   const [dataAvatar, setDataAvatar] = useState<any>(null);
   const [avatarPrice, setAvatarPrice] = useState<any>(null);
 

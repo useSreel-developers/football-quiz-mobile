@@ -2,16 +2,16 @@ import React, {useState, useEffect} from 'react';
 import Bg2 from '../components/Bg2';
 import {Box, Text, ButtonText, Image, Button} from '@gluestack-ui/themed';
 import {View} from 'react-native';
-import {socketConnectionAtom} from '../globals/GlobalData';
+import {socketConnectionAtom, roomId, questions} from '../globals/GlobalData';
 import {useAtom} from 'jotai';
-import {HStack} from '@gluestack-ui/themed';
-import {Spinner} from '@gluestack-ui/themed';
 import AppLottieView from '../components/AppLottieView';
 
 const FindOpponent = ({navigation}: any) => {
   const [time, setTime] = useState<any>();
   const [dataPlayer, setDataPlayer] = useState<any>([]);
   const [socketConnection] = useAtom(socketConnectionAtom);
+  const [roomIdQuiz, setRoomIdQuiz] = useAtom(roomId);
+  const [dataQuestion, setDataQuestion] = useAtom(questions);
 
   useEffect(() => {
     socketConnection.on('findingMatch', (res: any) => {
@@ -24,6 +24,9 @@ const FindOpponent = ({navigation}: any) => {
 
     socketConnection.on('matchFound', res => {
       navigation.navigate('Quiz');
+      setRoomIdQuiz(res.roomId);
+      setDataQuestion(res.questions);
+      // console.log(res);
     });
 
     return () => {
@@ -47,13 +50,6 @@ const FindOpponent = ({navigation}: any) => {
             alignItems: 'center',
           }}>
           {dataPlayer.length === 3 ? (
-            // <View>
-            //    <ActivityIndicator color="#36d7b7" />
-            //    <HStack space="sm">
-            //     <Spinner />
-            //     <Text size="md">Please Wait</Text>
-            //   </HStack>
-            //  </View>
             <View>
               <AppLottieView
                 source={require('../assets/animation/AnimationLoading.json')}
