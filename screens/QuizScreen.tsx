@@ -63,12 +63,12 @@ const QuizScreen = ({navigation}: any) => {
           justifyContent: 'center',
           alignItems: 'center',
           flex: 1,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
           margin: 10,
           borderRadius: 10,
           borderWidth: 1,
           borderColor: 'green',
           padding: 10,
+          backgroundColor: 'rgba(0, 0, 0, 0.3)',
         }}>
         <View
           style={{
@@ -87,7 +87,7 @@ const QuizScreen = ({navigation}: any) => {
           }}>
           <Text style={{fontSize: 20}}>🏆</Text>
           <Text style={{fontSize: 20, fontWeight: 'bold', color: '#ffb703'}}>
-            {score}
+            {/* {points} */}
           </Text>
         </View>
 
@@ -116,13 +116,13 @@ const QuizScreen = ({navigation}: any) => {
                   fontSize: 30,
                   textAlign: 'center',
                   fontWeight: 'bold',
-                  color: '#ccff33',
+                  color: 'green',
                   marginBottom: 10,
                   borderWidth: 2,
                   borderColor: 'green',
                   borderRadius: 10,
                   padding: 10,
-                  backgroundColor: 'grey',
+                  backgroundColor: '#ffb703',
                 }}>
                 {counter}
               </Text>
@@ -139,8 +139,10 @@ const QuizScreen = ({navigation}: any) => {
             justifyContent: 'space-between',
             marginHorizontal: 10,
           }}>
-          <Text>Your Progress</Text>
-          <Text>
+          <Text style={{fontWeight: 'bold', color: '#ffb703'}}>
+            Your Progress
+          </Text>
+          <Text style={{fontWeight: 'bold', color: '#ffb703'}}>
             ({currentQuestionIndex + 1}/{dataQuestion.length}) questions
           </Text>
         </View>

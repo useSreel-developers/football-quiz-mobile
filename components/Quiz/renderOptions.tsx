@@ -25,7 +25,7 @@ export const renderOptions = () => {
   // }
 
   return (
-    <View>
+    <View style={{width: '100%'}}>
       {dataQuestion[currentQuestionIndex]?.options.map(
         (option: any, index: number) => {
           if (counter <= 0) {
@@ -59,10 +59,10 @@ export const renderOptions = () => {
                   {option}
                 </Text>
 
-                {temporaryAnswerUser?.map((answer: any) => {
+                {temporaryAnswerUser?.map((answer: any, key) => {
                   if (answer.option === 'A' && index === 0) {
                     return (
-                      <View>
+                      <View key={key}>
                         <Image
                           source={{
                             uri: answer.avatar
@@ -70,13 +70,14 @@ export const renderOptions = () => {
                               : 'https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=740&t=st=1700712782~exp=1700713382~hmac=05bdd42caf7eadaf1c00c10029f54806c78874461728bc38046315f09e795a16',
                           }}
                           alt="Avatar User"
+                          style={{width: 30, height: 30, borderRadius: 50}}
                         />
                       </View>
                     );
                   }
                   if (answer.option === 'B' && index === 1) {
                     return (
-                      <View>
+                      <View key={key}>
                         <Image
                           source={{
                             uri: answer.avatar
@@ -84,13 +85,14 @@ export const renderOptions = () => {
                               : 'https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=740&t=st=1700712782~exp=1700713382~hmac=05bdd42caf7eadaf1c00c10029f54806c78874461728bc38046315f09e795a16',
                           }}
                           alt="Avatar User"
+                          style={{width: 30, height: 30, borderRadius: 50}}
                         />
                       </View>
                     );
                   }
                   if (answer.option === 'C' && index === 2) {
                     return (
-                      <View>
+                      <View key={key}>
                         <Image
                           source={{
                             uri: answer.avatar
@@ -98,13 +100,14 @@ export const renderOptions = () => {
                               : 'https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=740&t=st=1700712782~exp=1700713382~hmac=05bdd42caf7eadaf1c00c10029f54806c78874461728bc38046315f09e795a16',
                           }}
                           alt="Avatar User"
+                          style={{width: 30, height: 30, borderRadius: 50}}
                         />
                       </View>
                     );
                   }
                   if (answer.option === 'D' && index === 3) {
                     return (
-                      <View>
+                      <View key={key}>
                         <Image
                           source={{
                             uri: answer.avatar
@@ -112,6 +115,7 @@ export const renderOptions = () => {
                               : 'https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=740&t=st=1700712782~exp=1700713382~hmac=05bdd42caf7eadaf1c00c10029f54806c78874461728bc38046315f09e795a16',
                           }}
                           alt="Avatar User"
+                          style={{width: 30, height: 30, borderRadius: 50}}
                         />
                       </View>
                     );

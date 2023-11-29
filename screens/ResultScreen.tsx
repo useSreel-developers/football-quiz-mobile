@@ -17,8 +17,17 @@ const ResultScreen = ({navigation}: any) => {
           position: 'relative',
           marginHorizontal: 10,
         }}>
-        <Text style={{color: 'white', fontSize: 25, fontWeight: '900'}}>
-          1 💎 for <Text style={{color: '#669bbc'}}>UseReal</Text>
+        <Text
+          style={{
+            color: '#468500',
+            fontSize: 12,
+            fontWeight: '900',
+            backgroundColor: '#ffb703',
+            padding: 5,
+            borderRadius: 5,
+            borderColor: '#468500',
+          }}>
+          CONGRATULATIONS, 1 💎 FOR "JUARA SATU"
         </Text>
         <View
           style={{
@@ -38,7 +47,7 @@ const ResultScreen = ({navigation}: any) => {
               height: 70,
               backgroundColor: 'red',
               borderRadius: 50,
-              borderColor: '#ffcc00',
+              borderColor: '#ffb703',
               borderWidth: 2,
             }}
           />
@@ -73,16 +82,18 @@ const ResultScreen = ({navigation}: any) => {
             style={{
               width: 70,
               height: 70,
-              backgroundColor: 'red',
+              backgroundColor: '#ffb703',
               borderRadius: 50,
-              borderColor: '#ffcc00',
+              borderColor: '#ffb703',
               borderWidth: 2,
             }}
           />
           <Text style={{color: 'white', fontWeight: '900', fontSize: 10}}>
             NAME OF THE PLAYER
           </Text>
-          <Text style={{color: 'red', fontWeight: '900'}}>{points}</Text>
+          <Text style={{color: '#468500', fontWeight: '900', fontSize: 20}}>
+            {points}
+          </Text>
         </View>
         <View
           style={{
@@ -101,25 +112,27 @@ const ResultScreen = ({navigation}: any) => {
             style={{
               width: 70,
               height: 70,
-              backgroundColor: 'red',
+              backgroundColor: '#ffb703',
               borderRadius: 50,
-              borderColor: '#ffcc00',
+              borderColor: '#ffb703',
               borderWidth: 2,
             }}
           />
           <Text style={{color: 'white', fontWeight: '900', fontSize: 10}}>
             NAME OF THE PLAYER
           </Text>
-          <Text style={{color: 'red', fontWeight: '900'}}>{points}</Text>
+          <Text style={{color: '#468500', fontWeight: '900', fontSize: 20}}>
+            {points}
+          </Text>
         </View>
         <View
           style={{
             position: 'absolute',
             bottom: 140,
-            backgroundColor: '#869f00',
+            backgroundColor: '#468500',
             width: '100%',
-            padding: 10,
-            borderRadius: 15,
+            padding: 7,
+            // borderRadius: 15,
           }}>
           <View
             style={{
@@ -127,8 +140,8 @@ const ResultScreen = ({navigation}: any) => {
               flexDirection: 'row',
               gap: 10,
               alignItems: 'center',
-              backgroundColor: '#004aad',
-              borderRadius: 10,
+              backgroundColor: '#ffb703',
+              // borderRadius: 10,
               marginBottom: 10,
               padding: 5,
             }}>
@@ -139,20 +152,20 @@ const ResultScreen = ({navigation}: any) => {
               style={{
                 width: 40,
                 height: 40,
-                backgroundColor: 'red',
+                backgroundColor: '#ffb703',
                 borderRadius: 50,
-                borderColor: '#ffcc00',
+                borderColor: '#468500',
                 borderWidth: 2,
               }}
             />
-            <Text style={{color: 'white', fontWeight: '900', fontSize: 12}}>
+            <Text style={{color: '#468500', fontWeight: '900', fontSize: 12}}>
               NAMA PERINGKAT 4
             </Text>
             <Text
               style={{
-                color: 'red',
+                color: '#468500',
                 fontWeight: '900',
-                fontSize: 12,
+                fontSize: 20,
                 marginLeft: 'auto',
               }}>
               0{points}
@@ -164,8 +177,8 @@ const ResultScreen = ({navigation}: any) => {
               flexDirection: 'row',
               gap: 10,
               alignItems: 'center',
-              backgroundColor: '#004aad',
-              borderRadius: 10,
+              backgroundColor: '#ffb703',
+              // borderRadius: 10,
               padding: 5,
             }}>
             <Image
@@ -175,20 +188,20 @@ const ResultScreen = ({navigation}: any) => {
               style={{
                 width: 40,
                 height: 40,
-                backgroundColor: 'red',
+                backgroundColor: '#468500',
                 borderRadius: 50,
-                borderColor: '#ffcc00',
+                borderColor: '#468500',
                 borderWidth: 2,
               }}
             />
-            <Text style={{color: 'white', fontWeight: '900', fontSize: 12}}>
+            <Text style={{color: '#468500', fontWeight: '900', fontSize: 12}}>
               NAMA PERINGKAT 5
             </Text>
             <Text
               style={{
-                color: 'red',
+                color: '#468500',
                 fontWeight: '900',
-                fontSize: 12,
+                fontSize: 20,
                 marginLeft: 'auto',
               }}>
               0{points}
@@ -204,7 +217,7 @@ const ResultScreen = ({navigation}: any) => {
             gap: 10,
             position: 'absolute',
             bottom: 10,
-            justifyContent: 'center',
+            justifyContent: 'space-around',
           }}>
           <Button
             title="RETURN TO HOME"
@@ -214,6 +227,7 @@ const ResultScreen = ({navigation}: any) => {
           <Button
             title="PLAY AGAIN"
             onPress={() => Alert.alert('belum diproses')}
+            color={'blue'}
           />
         </View>
       </View>

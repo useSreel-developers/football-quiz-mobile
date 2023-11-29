@@ -10,7 +10,14 @@ export const renderQuestion = () => {
   return (
     <View marginVertical={20}>
       {/* Question */}
-      <Text style={{color: COLORS.white, fontSize: 20}}>
+      <Text
+        style={{
+          color: 'white',
+          fontSize: 20,
+          fontWeight: '700',
+          textAlign: 'center',
+          lineHeight: 30,
+        }}>
         {dataQuestion[currentQuestionIndex]?.question}
       </Text>
     </View>
