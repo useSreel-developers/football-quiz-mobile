@@ -16,10 +16,12 @@ type User = {
 
 type DataUser = {
   user: User | null;
+  isDiamond: boolean;
 };
 
 const initialState: DataUser | null = {
   user: null,
+  isDiamond: false,
 };
 
 export const userSlice = createSlice({
@@ -32,8 +34,11 @@ export const userSlice = createSlice({
     logout: state => {
       state.user = null;
     },
+    setIsDiamond: (state, action) => {
+      state.isDiamond = action.payload;
+    },
   },
 });
 
-export const {login, logout} = userSlice.actions;
+export const {login, logout, setIsDiamond} = userSlice.actions;
 export default userSlice.reducer;

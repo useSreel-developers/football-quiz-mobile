@@ -6,9 +6,9 @@ import HomeScreen from './screens/HomeScreen';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import QuizScreen from './screens/QuizScreen';
 import ResultScreen from './screens/ResultScreen';
-import {Provider} from 'react-redux';
+import {Provider, useSelector} from 'react-redux';
 import {config} from '@gluestack-ui/config';
-import {GluestackUIProvider} from '@gluestack-ui/themed';
+import {GluestackUIProvider, Text, View} from '@gluestack-ui/themed';
 import ChooseAvatar from './screens/ChooseAvatar';
 import LoginScreen from './screens/LoginScreen';
 import {RootState, store} from './redux/store';
@@ -16,8 +16,11 @@ import CheckingToken from './screens/CheckingToken';
 import FindOpponent from './screens/FindOpponent';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {StatusBar} from 'react-native';
-
+import FontAwesome6 from 'react-native-vector-icons//FontAwesome6';
+import Diamond from './components/Diamond';
 const App = () => {
+  const [isDiamond, setIsDiamond] = React.useState(false);
+
   GoogleSignin.configure({
     webClientId:
       '186171516922-hdtojqacvqs2bdpaaj9qvvmtbvbrgcsb.apps.googleusercontent.com',
@@ -49,7 +52,30 @@ const App = () => {
               <Stack.Screen
                 name="Home"
                 component={HomeScreen}
-                options={{headerShown: false}}
+                options={{
+                  title: '',
+                  headerLeft: () => (
+                    <View>
+                      <Text>Logout</Text>
+                    </View>
+                  ),
+                  headerRight: () => (
+                    <View>
+                      {/* Diamond User */}
+                      <Diamond />
+                      {/* End Diamond User */}
+                    </View>
+                  ),
+                  headerBackground: () => (
+                    <View
+                      style={{
+                        backgroundColor: 'green',
+                        width: '100%',
+                        height: '100%',
+                      }}
+                    />
+                  ),
+                }}
               />
               <Stack.Screen
                 name="FindOpponent"

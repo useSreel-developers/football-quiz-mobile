@@ -10,7 +10,7 @@ import {TouchableOpacity, View} from 'react-native';
 import React, {useState, useEffect, useContext} from 'react';
 import Bg2 from '../components/Bg2';
 import {useLogin} from '../hooks/useLogin';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {RootState} from '../redux/store';
 import {API} from '../utlis/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -21,16 +21,20 @@ import {socketConnectionAtom} from '../globals/GlobalData';
 import {useAtom} from 'jotai';
 import {useAvatar} from '../hooks/useAvatar';
 import AppLottieView from '../components/AppLottieView';
+import {setIsDiamond} from '../redux/sliceUser';
 
 const Home = ({navigation}: any) => {
   const [socketConnection] = useAtom(socketConnectionAtom);
   const {updateDataUser, avatarId, setAvatarId} = useAvatar();
 
-  const [isDiamond, setIsDiamond] = React.useState(false);
   const [isAvatar, setIsAvatar] = React.useState(false);
   const {onGoogleLogoutPress} = useLogin();
   const [dataAvatar, setDataAvatar] = useState<any>(null);
   const [avatarPrice, setAvatarPrice] = useState<any>(null);
+
+  const isDiamond = useSelector((state: any) => state.user.isDiamond);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     socketConnection.on('connect', () => {
@@ -87,33 +91,6 @@ const Home = ({navigation}: any) => {
           marginHorizontal: 10,
           position: 'relative',
         }}>
-        {/* Diamond User */}
-        <Box style={{display: 'flex', alignItems: 'flex-end'}}>
-          <TouchableOpacity
-            style={{
-              backgroundColor: 'green',
-              paddingHorizontal: 10,
-              paddingVertical: 5,
-              borderRadius: 10,
-              display: 'flex',
-              flexDirection: 'row',
-              gap: 5,
-            }}
-            onPress={() => setIsDiamond(!isDiamond)}>
-            <Text style={{color: 'white', fontWeight: 'bold'}}>
-              💎 {user?.diamond}{' '}
-            </Text>
-
-            <FontAwesome6
-              name="cart-plus"
-              size={20}
-              color="#ffb703"
-              style={{fontWeight: 'bold'}}
-            />
-          </TouchableOpacity>
-        </Box>
-        {/* End Diamond User */}
-
         {/* Edit Avatar */}
         <Box
           style={{
@@ -245,7 +222,7 @@ const Home = ({navigation}: any) => {
               left: 0,
               right: 0,
               bottom: 80,
-              backgroundColor: '#869f00',
+              backgroundColor: 'green',
               borderRadius: 20,
               padding: 10,
               display: 'flex',
@@ -265,7 +242,7 @@ const Home = ({navigation}: any) => {
               }}>
               <TouchableOpacity
                 style={{
-                  backgroundColor: '#e5c900',
+                  backgroundColor: '#ffb703',
                   borderWidth: 2,
                   borderColor: 'white',
                   padding: 10,
@@ -324,7 +301,7 @@ const Home = ({navigation}: any) => {
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
-                  backgroundColor: '#e5c900',
+                  backgroundColor: '#ffb703',
                   borderWidth: 2,
                   borderColor: 'white',
                   padding: 10,
@@ -383,7 +360,7 @@ const Home = ({navigation}: any) => {
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
-                  backgroundColor: '#e5c900',
+                  backgroundColor: '#ffb703',
                   borderWidth: 2,
                   borderColor: 'white',
                   padding: 10,
@@ -442,7 +419,7 @@ const Home = ({navigation}: any) => {
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
-                  backgroundColor: '#e5c900',
+                  backgroundColor: '#ffb703',
                   borderWidth: 2,
                   borderColor: 'white',
                   padding: 10,
@@ -509,7 +486,7 @@ const Home = ({navigation}: any) => {
               mt={30}>
               <Button
                 style={{backgroundColor: 'red'}}
-                onPress={() => setIsDiamond(false)}>
+                onPress={() => dispatch(setIsDiamond(!isDiamond))}>
                 <ButtonText>Cancel</ButtonText>
               </Button>
               <Button style={{backgroundColor: 'blue'}}>
@@ -527,8 +504,8 @@ const Home = ({navigation}: any) => {
               top: 80,
               left: 0,
               right: 0,
-              bottom: 80,
-              backgroundColor: '#869f00',
+              bottom: 60,
+              backgroundColor: 'green',
               padding: 5,
               borderRadius: 20,
               display: 'flex',
@@ -563,7 +540,7 @@ const Home = ({navigation}: any) => {
                             borderColor: 'white',
                             padding: 10,
                             borderRadius: 10,
-                            backgroundColor: '#e5c900',
+                            backgroundColor: '#ffb703',
                           }
                         : {
                             display: 'flex',
@@ -573,7 +550,7 @@ const Home = ({navigation}: any) => {
                             borderColor: 'green',
                             padding: 10,
                             borderRadius: 10,
-                            backgroundColor: '#e5c900',
+                            backgroundColor: '#ffb703',
                           }
                     }>
                     <Image
@@ -588,7 +565,7 @@ const Home = ({navigation}: any) => {
                     />
                     <Text
                       style={{
-                        color: 'yellow',
+                        color: 'white',
                         fontWeight: 'bold',
                         fontSize: 24,
                         lineHeight: 24,

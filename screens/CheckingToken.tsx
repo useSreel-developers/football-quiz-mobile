@@ -34,11 +34,8 @@ const StackNavigator = ({navigation}: any) => {
               autoPlay
               loop
               speed={0.5}
-              style={{width: 100, height: 100}}
+              style={{width: 150, height: 150}}
             />
-            <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
-              Tunggu Sebentar
-            </Text>
           </View>
         )}
       </View>
