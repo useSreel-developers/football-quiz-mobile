@@ -71,10 +71,12 @@ const ResultScreen = ({navigation}: any) => {
           />
 
           <Text style={{color: 'white', fontWeight: '900', fontSize: 10}}>
-            {sortingWinnerScore[0].userName}
+            {sortingWinnerScore[0].userName
+              ? sortingWinnerScore[0].userName
+              : 'Juara 1'}
           </Text>
           <Text style={{color: '#468500', fontWeight: '900', fontSize: 20}}>
-            {sortingWinnerScore[0].score}
+            {sortingWinnerScore[0].score ? sortingWinnerScore[0].score : 0}
           </Text>
           <FontAwesome6
             name="crown"
@@ -113,10 +115,12 @@ const ResultScreen = ({navigation}: any) => {
             }}
           />
           <Text style={{color: 'white', fontWeight: '900', fontSize: 10}}>
-            {sortingWinnerScore[1].userName}
+            {sortingWinnerScore[1].userName
+              ? sortingWinnerScore[1].userName
+              : 'Juara 2'}
           </Text>
           <Text style={{color: '#468500', fontWeight: '900', fontSize: 20}}>
-            {sortingWinnerScore[1].score}
+            {sortingWinnerScore[1].score ? sortingWinnerScore[1].score : 0}
           </Text>
         </View>
         <View
@@ -145,10 +149,12 @@ const ResultScreen = ({navigation}: any) => {
             }}
           />
           <Text style={{color: 'white', fontWeight: '900', fontSize: 10}}>
-            {sortingWinnerScore[2].userName}
+            {sortingWinnerScore[2].userName
+              ? sortingWinnerScore[2].userName
+              : 'Juara 3'}
           </Text>
           <Text style={{color: '#468500', fontWeight: '900', fontSize: 20}}>
-            {sortingWinnerScore[2].score}
+            {sortingWinnerScore[2].score ? sortingWinnerScore[2].score : 0}
           </Text>
         </View>
         <View
@@ -187,7 +193,9 @@ const ResultScreen = ({navigation}: any) => {
               }}
             />
             <Text style={{color: '#468500', fontWeight: '900', fontSize: 12}}>
-              {sortingWinnerScore[3].userName}
+              {sortingWinnerScore[3].userName
+                ? sortingWinnerScore[3].userName
+                : 'Juara 4'}
             </Text>
             <Text
               style={{
@@ -196,7 +204,7 @@ const ResultScreen = ({navigation}: any) => {
                 fontSize: 20,
                 marginLeft: 'auto',
               }}>
-              {sortingWinnerScore[3].score}
+              {sortingWinnerScore[3].score ? sortingWinnerScore[3].score : 0}
             </Text>
           </View>
           <View
@@ -225,7 +233,9 @@ const ResultScreen = ({navigation}: any) => {
               }}
             />
             <Text style={{color: '#468500', fontWeight: '900', fontSize: 12}}>
-              {sortingWinnerScore[4].userName}
+              {sortingWinnerScore[4].userName
+                ? sortingWinnerScore[4].userName
+                : 'Juara 5'}
             </Text>
             <Text
               style={{
@@ -234,7 +244,7 @@ const ResultScreen = ({navigation}: any) => {
                 fontSize: 20,
                 marginLeft: 'auto',
               }}>
-              {sortingWinnerScore[4].score}
+              {sortingWinnerScore[4].score ? sortingWinnerScore[4].score : 0}
             </Text>
           </View>
         </View>
