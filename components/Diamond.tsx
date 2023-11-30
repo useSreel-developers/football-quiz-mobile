@@ -13,10 +13,6 @@ import {setIsDiamond} from '../redux/sliceUser';
 import {useDispatch, useSelector} from 'react-redux';
 
 export default function Diamond() {
-  useSelector((state: any) =>
-    console.log('diamondreduc', state.user.isDiamond),
-  );
-
   const isDiamond = useSelector((state: any) => state.user.isDiamond);
   const dispatch = useDispatch();
   return (

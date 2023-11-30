@@ -8,7 +8,7 @@ import {
 } from '@gluestack-ui/themed';
 import {TouchableOpacity, View} from 'react-native';
 import React, {useState, useEffect, useContext} from 'react';
-import Bg2 from '../components/Bg2';
+import Bg2 from '../components/homeBG';
 import {useLogin} from '../hooks/useLogin';
 import {useSelector, useDispatch} from 'react-redux';
 import {RootState} from '../redux/store';
@@ -22,6 +22,7 @@ import {useAtom} from 'jotai';
 import {useAvatar} from '../hooks/useAvatar';
 import AppLottieView from '../components/AppLottieView';
 import {setIsDiamond} from '../redux/sliceUser';
+import {UseSelector} from 'react-redux/es/hooks/useSelector';
 
 const Home = ({navigation}: any) => {
   const [socketConnection] = useAtom(socketConnectionAtom);
@@ -87,7 +88,13 @@ const Home = ({navigation}: any) => {
   return (
     <Bg2>
       {isLoading ? (
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: '#ffb703',
+          }}>
           <AppLottieView
             source={require('../assets/animation/AnimationCheckingUser.json')}
             autoPlay
@@ -95,9 +102,6 @@ const Home = ({navigation}: any) => {
             speed={0.5}
             style={{width: 100, height: 100}}
           />
-          <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
-            Tunggu Sebentar
-          </Text>
         </View>
       ) : (
         <Box
@@ -172,17 +176,18 @@ const Home = ({navigation}: any) => {
                   />
                 </View>
               </Pressable>
-              <Text style={{fontWeight: 'bold', fontSize: 20, color: 'green'}}>
-                {user?.name}
-              </Text>
             </Box>
 
-            <Box>
+            <Box style={{position: 'absolute', bottom: 58}}>
               <AppLottieView
                 source={require('../assets/animation/AnimationHome.json')}
                 autoPlay
                 loop
-                style={{width: 500, height: 200}}
+                speed={1}
+                style={{
+                  width: 200,
+                  height: 200,
+                }}
               />
             </Box>
 
@@ -191,7 +196,12 @@ const Home = ({navigation}: any) => {
               mt={25}
               width="70%"
               borderRadius={10}
-              style={{height: 50, backgroundColor: '#004aad'}}>
+              style={{
+                height: 50,
+                backgroundColor: 'green',
+                position: 'absolute',
+                bottom: 20,
+              }}>
               <ButtonText
                 style={{
                   fontWeight: 'bold',
@@ -203,27 +213,6 @@ const Home = ({navigation}: any) => {
                   alignItems: 'center',
                 }}>
                 Start Game
-              </ButtonText>
-            </Button>
-            <Button
-              onPress={() =>
-                onGoogleLogoutPress().then(() => navigation.navigate('Login'))
-              }
-              width="70%"
-              borderRadius={10}
-              style={{
-                height: 50,
-                backgroundColor: '#ff0000',
-                marginTop: 20,
-              }}>
-              <ButtonText
-                style={{
-                  fontWeight: 'bold',
-                  fontSize: 20,
-                  color: 'white',
-                  textAlign: 'center',
-                }}>
-                Logout
               </ButtonText>
             </Button>
           </Box>

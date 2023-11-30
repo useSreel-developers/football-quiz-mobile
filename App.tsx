@@ -15,12 +15,16 @@ import {RootState, store} from './redux/store';
 import CheckingToken from './screens/CheckingToken';
 import FindOpponent from './screens/FindOpponent';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
-import {StatusBar} from 'react-native';
+import {StatusBar, TouchableOpacity} from 'react-native';
 import FontAwesome6 from 'react-native-vector-icons//FontAwesome6';
 import Diamond from './components/Diamond';
-const App = () => {
-  const [isDiamond, setIsDiamond] = React.useState(false);
+import {useLogin} from './hooks/useLogin';
+import useName from './components/UserName';
+import UserName from './components/UserName';
 
+// const userName = useName();
+const App = () => {
+  const {onGoogleLogoutPress} = useLogin();
   GoogleSignin.configure({
     webClientId:
       '186171516922-hdtojqacvqs2bdpaaj9qvvmtbvbrgcsb.apps.googleusercontent.com',
@@ -52,11 +56,30 @@ const App = () => {
               <Stack.Screen
                 name="Home"
                 component={HomeScreen}
-                options={{
-                  title: '',
+                options={({navigation}) => ({
+                  title: ``,
+                  // headerTitleAlign: 'center',
+                  // headerTitleStyle: {
+                  //   color: 'white',
+                  //   fontWeight: 'bold',
+                  //   fontSize: 20,
+                  // },
                   headerLeft: () => (
-                    <View>
-                      <Text>Logout</Text>
+                    <View
+                      style={{display: 'flex', flexDirection: 'row', gap: 10, alignItems: 'center'}}>
+                      <TouchableOpacity
+                        onPress={() =>
+                          onGoogleLogoutPress().then(() =>
+                            navigation.navigate('Login'),
+                          )
+                        }>
+                        <FontAwesome6
+                          name="arrow-left"
+                          size={24}
+                          color="#ffb703"
+                        />
+                      </TouchableOpacity>
+                      <UserName />
                     </View>
                   ),
                   headerRight: () => (
@@ -75,7 +98,7 @@ const App = () => {
                       }}
                     />
                   ),
-                }}
+                })}
               />
               <Stack.Screen
                 name="FindOpponent"

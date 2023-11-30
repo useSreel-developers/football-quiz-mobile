@@ -117,13 +117,15 @@ const FindOpponent = ({navigation}: any) => {
               lineHeight: 38,
               fontWeight: 'bold',
             }}>
-            {time % 4 === 0
-              ? 'Please Wait '
+            {time % 10 === 0
+              ? 'Please Wait!'
               : time % 3 === 0
               ? 'Finding opponent.'
               : time % 2 === 0
               ? 'Finding opponent..'
-              : 'Finding opponent...'}
+              : time % 2 === 1
+              ? 'Finding opponent...'
+              : 'Please Wait!'}
           </Text>
           <Text
             style={{
