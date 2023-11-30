@@ -39,6 +39,12 @@ const QuizScreen = ({navigation}: any) => {
       answer = null;
     }
 
+    if (dataQuestion.length - 1 === currentQuestionIndex && counter === 0) {
+      setTimeout(() => {
+        navigation.navigate('Result');
+      }, 5000);
+    }
+
     if (counter === 0) {
       socketConnection.emit('storeScore', {
         userId: dataUser?.id,

@@ -26,9 +26,9 @@ const FindOpponent = ({navigation}: any) => {
     });
 
     socketConnection.on('matchFound', res => {
-      navigation.navigate('Quiz');
       setRoomIdQuiz(res.roomId);
       setDataQuestion(res.questions);
+      navigation.navigate('Quiz');
       // console.log(res);
     });
 

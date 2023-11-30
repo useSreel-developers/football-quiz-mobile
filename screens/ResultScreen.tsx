@@ -1,12 +1,27 @@
 import {View, Text, Image, Button, Alert} from 'react-native';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import WinnerBg from '../components/WinnerBg';
 import {useRoute} from '@react-navigation/native';
 import FontAwesome6 from 'react-native-vector-icons//FontAwesome6';
+import {socketConnectionAtom} from '../globals/GlobalData';
+import {useAtom} from 'jotai';
+import {TypeWinner} from '../Type/TypeWinner';
 
 const ResultScreen = ({navigation}: any) => {
   const route: any = useRoute();
   const points: any = route?.params?.points;
+  const [socketConnection] = useAtom(socketConnectionAtom);
+  const [dataWinner, setDataWinner] = useState<TypeWinner[]>([]);
+
+  useEffect(() => {
+    socketConnection.on('matchOver', res => {
+      setDataWinner(res.finalScore);
+    });
+  }, []);
+
+  const sortingWinnerScore = dataWinner.sort((a, b) => b.score - a.score);
+  console.log('winner: ', sortingWinnerScore);
+
   return (
     <WinnerBg>
       <View
@@ -28,7 +43,7 @@ const ResultScreen = ({navigation}: any) => {
             borderRadius: 5,
             borderColor: '#468500',
           }}>
-          CONGRATULATIONS, 1 💎 FOR "JUARA SATU"
+          CONGRATULATIONS, 1 💎 FOR {sortingWinnerScore[0].userName}
         </Text>
         <View
           style={{
@@ -41,7 +56,9 @@ const ResultScreen = ({navigation}: any) => {
           {/*AVATAR JUARA 1*/}
           <Image
             source={{
-              uri: 'https://img.freepik.com/free-vector/happy-boy-character_1308-27606.jpg?size=626&ext=jpg&ga=GA1.1.1818359700.1701086645&semt=ais',
+              uri: sortingWinnerScore[0].userAvatar
+                ? sortingWinnerScore[0].userAvatar
+                : 'https://img.freepik.com/free-vector/happy-boy-character_1308-27606.jpg?size=626&ext=jpg&ga=GA1.1.1818359700.1701086645&semt=ais',
             }}
             style={{
               width: 70,
@@ -54,10 +71,10 @@ const ResultScreen = ({navigation}: any) => {
           />
 
           <Text style={{color: 'white', fontWeight: '900', fontSize: 10}}>
-            NAME OF THE PLAYER
+            {sortingWinnerScore[0].userName}
           </Text>
           <Text style={{color: '#468500', fontWeight: '900', fontSize: 20}}>
-            {points}777
+            {sortingWinnerScore[0].score}
           </Text>
           <FontAwesome6
             name="crown"
@@ -82,7 +99,9 @@ const ResultScreen = ({navigation}: any) => {
           {/*AVATAR JUARA 2*/}
           <Image
             source={{
-              uri: 'https://img.freepik.com/free-vector/happy-boy-character_1308-27606.jpg?size=626&ext=jpg&ga=GA1.1.1818359700.1701086645&semt=ais',
+              uri: sortingWinnerScore[1].userAvatar
+                ? sortingWinnerScore[1].userAvatar
+                : 'https://img.freepik.com/free-vector/happy-boy-character_1308-27606.jpg?size=626&ext=jpg&ga=GA1.1.1818359700.1701086645&semt=ais',
             }}
             style={{
               width: 70,
@@ -94,10 +113,10 @@ const ResultScreen = ({navigation}: any) => {
             }}
           />
           <Text style={{color: 'white', fontWeight: '900', fontSize: 10}}>
-            NAME OF THE PLAYER
+            {sortingWinnerScore[1].userName}
           </Text>
           <Text style={{color: '#468500', fontWeight: '900', fontSize: 20}}>
-            {points}777
+            {sortingWinnerScore[1].score}
           </Text>
         </View>
         <View
@@ -112,7 +131,9 @@ const ResultScreen = ({navigation}: any) => {
           {/*AVATAR JUARA 3*/}
           <Image
             source={{
-              uri: 'https://img.freepik.com/free-vector/happy-boy-character_1308-27606.jpg?size=626&ext=jpg&ga=GA1.1.1818359700.1701086645&semt=ais',
+              uri: sortingWinnerScore[2].userAvatar
+                ? sortingWinnerScore[2].userAvatar
+                : 'https://img.freepik.com/free-vector/happy-boy-character_1308-27606.jpg?size=626&ext=jpg&ga=GA1.1.1818359700.1701086645&semt=ais',
             }}
             style={{
               width: 70,
@@ -124,10 +145,10 @@ const ResultScreen = ({navigation}: any) => {
             }}
           />
           <Text style={{color: 'white', fontWeight: '900', fontSize: 10}}>
-            NAME OF THE PLAYER
+            {sortingWinnerScore[2].userName}
           </Text>
           <Text style={{color: '#468500', fontWeight: '900', fontSize: 20}}>
-            {points}777
+            {sortingWinnerScore[2].score}
           </Text>
         </View>
         <View
@@ -152,7 +173,9 @@ const ResultScreen = ({navigation}: any) => {
             }}>
             <Image
               source={{
-                uri: 'https://img.freepik.com/free-vector/happy-boy-character_1308-27606.jpg?size=626&ext=jpg&ga=GA1.1.1818359700.1701086645&semt=ais',
+                uri: sortingWinnerScore[3].userAvatar
+                  ? sortingWinnerScore[3].userAvatar
+                  : 'https://img.freepik.com/free-vector/happy-boy-character_1308-27606.jpg?size=626&ext=jpg&ga=GA1.1.1818359700.1701086645&semt=ais',
               }}
               style={{
                 width: 40,
@@ -164,7 +187,7 @@ const ResultScreen = ({navigation}: any) => {
               }}
             />
             <Text style={{color: '#468500', fontWeight: '900', fontSize: 12}}>
-              NAMA PERINGKAT 4
+              {sortingWinnerScore[3].userName}
             </Text>
             <Text
               style={{
@@ -173,7 +196,7 @@ const ResultScreen = ({navigation}: any) => {
                 fontSize: 20,
                 marginLeft: 'auto',
               }}>
-              0{points}
+              {sortingWinnerScore[3].score}
             </Text>
           </View>
           <View
@@ -188,7 +211,9 @@ const ResultScreen = ({navigation}: any) => {
             }}>
             <Image
               source={{
-                uri: 'https://img.freepik.com/free-vector/happy-boy-character_1308-27606.jpg?size=626&ext=jpg&ga=GA1.1.1818359700.1701086645&semt=ais',
+                uri: sortingWinnerScore[4].userAvatar
+                  ? sortingWinnerScore[4].userAvatar
+                  : 'https://img.freepik.com/free-vector/happy-boy-character_1308-27606.jpg?size=626&ext=jpg&ga=GA1.1.1818359700.1701086645&semt=ais',
               }}
               style={{
                 width: 40,
@@ -200,7 +225,7 @@ const ResultScreen = ({navigation}: any) => {
               }}
             />
             <Text style={{color: '#468500', fontWeight: '900', fontSize: 12}}>
-              NAMA PERINGKAT 5
+              {sortingWinnerScore[4].userName}
             </Text>
             <Text
               style={{
@@ -209,7 +234,7 @@ const ResultScreen = ({navigation}: any) => {
                 fontSize: 20,
                 marginLeft: 'auto',
               }}>
-              0{points}
+              {sortingWinnerScore[4].score}
             </Text>
           </View>
         </View>

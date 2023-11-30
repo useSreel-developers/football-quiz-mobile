@@ -85,7 +85,7 @@ export const useQuestion = () => {
           setCurrentQuestionIndex(currentQuestionIndex + 1);
           setAvatar(false);
           setTemporaryAnswerUser([]);
-        }, 5000);
+        }, 4000);
         setAvatar(true);
       }
     };
