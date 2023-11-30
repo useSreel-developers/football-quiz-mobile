@@ -7,6 +7,7 @@ import {renderOptions} from '../components/Quiz/renderOptions';
 import AppLottieView from '../components/AppLottieView';
 import {Pressable} from '@gluestack-ui/themed';
 import {useAtom} from 'jotai';
+import FontAwesome6 from 'react-native-vector-icons//FontAwesome6';
 import {
   options,
   roomId,
@@ -66,28 +67,28 @@ const QuizScreen = ({navigation}: any) => {
           margin: 10,
           borderRadius: 10,
           borderWidth: 1,
-          borderColor: 'green',
+          borderColor: '#ffb703',
           padding: 10,
-          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+          backgroundColor: 'green',
         }}>
         <View
           style={{
             display: 'flex',
             flexDirection: 'row',
-            backgroundColor: '#869f00',
+            backgroundColor: 'green',
             padding: 10,
             borderRadius: 10,
             justifyContent: 'center',
             alignItems: 'center',
             borderWidth: 1,
-            borderColor: 'green',
+            borderColor: '#ffb703',
             position: 'absolute',
             top: -25,
             right: 10,
           }}>
-          <Text style={{fontSize: 20}}>🏆</Text>
+          <FontAwesome6 name="trophy" size={20} color="#ffb703" />
           <Text style={{fontSize: 20, fontWeight: 'bold', color: '#ffb703'}}>
-            {/* {points} */}
+            {/* {score} */}
           </Text>
         </View>
 
@@ -140,10 +141,8 @@ const QuizScreen = ({navigation}: any) => {
             marginHorizontal: 10,
           }}>
           <Text style={{fontWeight: 'bold', color: '#ffb703'}}>
-            Your Progress
-          </Text>
-          <Text style={{fontWeight: 'bold', color: '#ffb703'}}>
-            ({currentQuestionIndex + 1}/{dataQuestion.length}) questions
+            You've done ({currentQuestionIndex + 1}/{dataQuestion.length})
+            questions
           </Text>
         </View>
         {/* End Count Answer Question */}

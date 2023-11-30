@@ -2,6 +2,7 @@ import {View, Text, Image, Button, Alert} from 'react-native';
 import React from 'react';
 import WinnerBg from '../components/WinnerBg';
 import {useRoute} from '@react-navigation/native';
+import FontAwesome6 from 'react-native-vector-icons//FontAwesome6';
 
 const ResultScreen = ({navigation}: any) => {
   const route: any = useRoute();
@@ -58,14 +59,16 @@ const ResultScreen = ({navigation}: any) => {
           <Text style={{color: '#468500', fontWeight: '900', fontSize: 20}}>
             {points}777
           </Text>
-          <Text
+          <FontAwesome6
+            name="crown"
+            size={30}
+            color="#ffb703"
             style={{
               fontSize: 30,
               position: 'absolute',
               top: -25,
-            }}>
-            👑
-          </Text>
+            }}
+          />
         </View>
         <View
           style={{

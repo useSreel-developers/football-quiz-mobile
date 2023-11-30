@@ -1,14 +1,16 @@
 import {View, Text, TouchableOpacity} from 'react-native';
 import React, {useEffect} from 'react';
 import Bg1 from '../components/Bg1';
-import {Icon} from 'react-native-elements';
-import {useLogin} from '../hooks/useLogin';
 import {useSelector} from 'react-redux';
 import {RootState} from '../redux/store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+} from '@react-native-google-signin/google-signin';
 import {API} from '../utlis/api';
 import auth from '@react-native-firebase/auth';
+import LoginBG from '../components/LoginBG';
 
 const LoginScreen = ({navigation}: any) => {
   const user = useSelector((state: RootState) => state.user);
@@ -52,29 +54,18 @@ const LoginScreen = ({navigation}: any) => {
   });
 
   return (
-    <Bg1>
+    <LoginBG>
       <View style={{flex: 1, justifyContent: 'flex-end', alignItems: 'center'}}>
-        <TouchableOpacity
+        <GoogleSigninButton
           style={{
-            backgroundColor: 'white',
-            marginBottom: 80,
-            display: 'flex',
-            flexDirection: 'row',
-            gap: 10,
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: 10,
-            borderRadius: 10,
-            borderWidth: 2,
+            width: 200,
+            height: 50,
+            marginBottom: 100,
           }}
-          onPress={onGoogleButtonPress}>
-          <Icon name="google" type="font-awesome" />
-          <Text style={{fontWeight: 'bold', fontSize: 20, color: 'black'}}>
-            Continue With Google
-          </Text>
-        </TouchableOpacity>
+          onPress={onGoogleButtonPress}
+        />
       </View>
-    </Bg1>
+    </LoginBG>
   );
 };
 

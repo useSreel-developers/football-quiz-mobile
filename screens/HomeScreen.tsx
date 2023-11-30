@@ -4,13 +4,6 @@ import {
   Button,
   ButtonText,
   Image,
-  // CheckCircleIcon,
-  // Alert,
-  // AlertIcon,
-  // VStack,
-  // AlertText,
-  // HStack,
-  // Spinner,
   Pressable,
 } from '@gluestack-ui/themed';
 import {TouchableOpacity, View} from 'react-native';
@@ -22,7 +15,7 @@ import {RootState} from '../redux/store';
 import {API} from '../utlis/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useUser} from '../hooks/useUser';
-import {Icon} from 'react-native-elements';
+import FontAwesome6 from 'react-native-vector-icons//FontAwesome6';
 import {useQuery} from '@tanstack/react-query';
 import {socketConnectionAtom} from '../globals/GlobalData';
 import {useAtom} from 'jotai';
@@ -96,33 +89,28 @@ const Home = ({navigation}: any) => {
         }}>
         {/* Diamond User */}
         <Box style={{display: 'flex', alignItems: 'flex-end'}}>
-          <Box
+          <TouchableOpacity
             style={{
-              backgroundColor: '#869f00',
-              padding: 10,
+              backgroundColor: 'green',
+              paddingHorizontal: 10,
+              paddingVertical: 5,
               borderRadius: 10,
               display: 'flex',
               flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              borderColor: 'yellow',
-              borderWidth: 1,
-            }}>
+              gap: 5,
+            }}
+            onPress={() => setIsDiamond(!isDiamond)}>
             <Text style={{color: 'white', fontWeight: 'bold'}}>
               💎 {user?.diamond}{' '}
             </Text>
-            <TouchableOpacity
-              style={{
-                backgroundColor: 'yellow',
-                paddingHorizontal: 10,
-                borderRadius: 10,
-              }}
-              onPress={() => setIsDiamond(!isDiamond)}>
-              <Text style={{color: 'green', fontWeight: 'bold', fontSize: 20}}>
-                +
-              </Text>
-            </TouchableOpacity>
-          </Box>
+
+            <FontAwesome6
+              name="cart-plus"
+              size={20}
+              color="#ffb703"
+              style={{fontWeight: 'bold'}}
+            />
+          </TouchableOpacity>
         </Box>
         {/* End Diamond User */}
 
@@ -156,7 +144,7 @@ const Home = ({navigation}: any) => {
                   // source={{uri: 'user?.avatar?.avatar_url'}}
                   style={{
                     borderRadius: 50,
-                    borderWidth: 2,
+                    borderWidth: 4,
                     borderColor: 'green',
                   }}
                   alt={
@@ -172,25 +160,29 @@ const Home = ({navigation}: any) => {
                   position: 'absolute',
                   bottom: 0,
                   right: 0,
-                  left: 40,
+                  left: 0,
                   zIndex: 99,
-                  backgroundColor: 'transparent',
+                  display: 'flex',
+                  alignItems: 'center',
+                  marginLeft: 45,
                 }}>
-                <Icon name="edit" type="font-awesome" color="green" />
+                <FontAwesome6
+                  name={'edit'}
+                  style={{
+                    color: '#ffb703',
+                    fontSize: 25,
+                    backgroundColor: 'green',
+                    paddingLeft: 5,
+                    paddingBottom: 5,
+                    borderRadius: 10,
+                  }}
+                />
               </View>
             </Pressable>
-            <Text style={{fontWeight: 'bold', fontSize: 20, color: 'white'}}>
+            <Text style={{fontWeight: 'bold', fontSize: 20, color: 'green'}}>
               {user?.name}
             </Text>
           </Box>
-
-          {/* <View>
-            <AppLottieView
-              source={require('../assets/animation/AnimationHome.json')}
-              autoPlay
-              loop
-            />
-          </View> */}
 
           <Box>
             <AppLottieView

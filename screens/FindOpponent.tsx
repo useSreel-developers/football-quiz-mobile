@@ -77,7 +77,7 @@ const FindOpponent = ({navigation}: any) => {
                   fontSize: 72,
                   lineHeight: 85,
                   color: '#ffb703',
-                  backgroundColor: '#004aad',
+                  backgroundColor: 'green',
                   borderRadius: 10,
                   borderColor: '#ffb703',
                   borderWidth: 2,
@@ -90,7 +90,7 @@ const FindOpponent = ({navigation}: any) => {
                   fontWeight: 'bold',
                   fontSize: 72,
                   lineHeight: 85,
-                  color: '#ffb703',
+                  color: 'green',
                 }}>
                 {''}:{''}
               </Text>
@@ -100,7 +100,7 @@ const FindOpponent = ({navigation}: any) => {
                   fontSize: 72,
                   lineHeight: 85,
                   color: '#ffb703',
-                  backgroundColor: '#004aad',
+                  backgroundColor: 'green',
                   borderRadius: 10,
                   borderColor: '#ffb703',
                   borderWidth: 1,
@@ -117,7 +117,13 @@ const FindOpponent = ({navigation}: any) => {
               lineHeight: 38,
               fontWeight: 'bold',
             }}>
-            Waiting for oponent...
+            {time % 4 === 0
+              ? 'Please Wait '
+              : time % 3 === 0
+              ? 'Finding opponent.'
+              : time % 2 === 0
+              ? 'Finding opponent..'
+              : 'Finding opponent...'}
           </Text>
           <Text
             style={{
@@ -137,7 +143,7 @@ const FindOpponent = ({navigation}: any) => {
                   flexDirection: 'row',
                   justifyContent: 'flex-start',
                   alignItems: 'center',
-                  backgroundColor: '#004aad',
+                  backgroundColor: 'green',
                   width: '100%',
                   borderRadius: 10,
                   borderWidth: 2,
@@ -163,7 +169,7 @@ const FindOpponent = ({navigation}: any) => {
                 />
                 <Text
                   style={{
-                    color: '#ffb703',
+                    color: 'white',
                     fontSize: 20,
                     lineHeight: 20,
                     fontWeight: 'bold',
