@@ -11,8 +11,25 @@ import {
 } from '@gluestack-ui/themed';
 import {setIsDiamond} from '../redux/sliceUser';
 import {useDispatch, useSelector} from 'react-redux';
+import { useQuery } from '@tanstack/react-query';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { API } from '../utlis/api';
 
 export default function Diamond() {
+
+  const {data: user} = useQuery({
+    queryKey: ['user'],
+    queryFn: async () => {
+      const {data} = await API.get('/check', {
+        headers: {
+          Authorization: `Bearer ${await AsyncStorage.getItem('token')}`,
+        },
+      });
+      return data.data;
+    },
+    refetchInterval: 1000,
+  });
+
   const isDiamond = useSelector((state: any) => state.user.isDiamond);
   const dispatch = useDispatch();
   return (
@@ -30,7 +47,7 @@ export default function Diamond() {
           }}
           onPress={() => dispatch(setIsDiamond(!isDiamond))}>
           <Text style={{color: 'white', fontWeight: 'bold'}}>
-            💎 0{/* {user?.diamond} */}
+            💎 {user?.diamond}
           </Text>
           <FontAwesome6
             name="cart-plus"
