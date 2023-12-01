@@ -22,7 +22,7 @@ import {useAtom} from 'jotai';
 import {useAvatar} from '../hooks/useAvatar';
 import AppLottieView from '../components/AppLottieView';
 import {setIsDiamond} from '../redux/sliceUser';
-import {UseSelector} from 'react-redux/es/hooks/useSelector';
+import {diamondPrice} from '../data/diamond';
 
 const Home = ({navigation}: any) => {
   const [socketConnection] = useAtom(socketConnectionAtom);
@@ -245,242 +245,42 @@ const Home = ({navigation}: any) => {
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}>
-                <TouchableOpacity
-                  style={{
-                    backgroundColor: '#ffb703',
-                    borderWidth: 2,
-                    borderColor: 'white',
-                    padding: 10,
-                    borderRadius: 10,
-                    margin: 5,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                  }}>
-                  <Text
+                {diamondPrice.map(diamond => (
+                  <TouchableOpacity
+                    key={diamond.id}
                     style={{
-                      color: 'yellow',
-                      fontWeight: 'bold',
-                      fontSize: 24,
-                      lineHeight: 24,
+                      backgroundColor: '#ffb703',
+                      borderWidth: 2,
+                      borderColor: 'white',
+                      padding: 10,
+                      borderRadius: 10,
+                      margin: 5,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
                     }}>
-                    100
-                  </Text>
-                  <Text
-                    style={{
-                      color: 'yellow',
-                      fontWeight: 'bold',
-                      fontSize: 24,
-                      lineHeight: 24,
-                    }}>
-                    💎
-                  </Text>
-                  <Text
-                    style={{
-                      color: 'yellow',
-                      fontWeight: 'bold',
-                      fontSize: 24,
-                      lineHeight: 24,
-                    }}>
-                    💎💎
-                  </Text>
-                  <Text
-                    style={{
-                      color: 'yellow',
-                      fontWeight: 'bold',
-                      fontSize: 24,
-                      lineHeight: 24,
-                    }}>
-                    💎💎💎
-                  </Text>
-                  <Text
-                    style={{
-                      color: 'green',
-                      fontWeight: 'bold',
-                      fontSize: 24,
-                      lineHeight: 24,
-                    }}>
-                    Rp. 84.000
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={{
-                    backgroundColor: '#ffb703',
-                    borderWidth: 2,
-                    borderColor: 'white',
-                    padding: 10,
-                    borderRadius: 10,
-                    margin: 5,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                  }}>
-                  <Text
-                    style={{
-                      color: 'yellow',
-                      fontWeight: 'bold',
-                      fontSize: 24,
-                      lineHeight: 24,
-                    }}>
-                    100
-                  </Text>
-                  <Text
-                    style={{
-                      color: 'yellow',
-                      fontWeight: 'bold',
-                      fontSize: 24,
-                      lineHeight: 24,
-                    }}>
-                    💎
-                  </Text>
-                  <Text
-                    style={{
-                      color: 'yellow',
-                      fontWeight: 'bold',
-                      fontSize: 24,
-                      lineHeight: 24,
-                    }}>
-                    💎💎
-                  </Text>
-                  <Text
-                    style={{
-                      color: 'yellow',
-                      fontWeight: 'bold',
-                      fontSize: 24,
-                      lineHeight: 24,
-                    }}>
-                    💎💎💎
-                  </Text>
-                  <Text
-                    style={{
-                      color: 'green',
-                      fontWeight: 'bold',
-                      fontSize: 24,
-                      lineHeight: 24,
-                    }}>
-                    Rp. 84.000
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={{
-                    backgroundColor: '#ffb703',
-                    borderWidth: 2,
-                    borderColor: 'white',
-                    padding: 10,
-                    borderRadius: 10,
-                    margin: 5,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                  }}>
-                  <Text
-                    style={{
-                      color: 'yellow',
-                      fontWeight: 'bold',
-                      fontSize: 24,
-                      lineHeight: 24,
-                    }}>
-                    100
-                  </Text>
-                  <Text
-                    style={{
-                      color: 'yellow',
-                      fontWeight: 'bold',
-                      fontSize: 24,
-                      lineHeight: 24,
-                    }}>
-                    💎
-                  </Text>
-                  <Text
-                    style={{
-                      color: 'yellow',
-                      fontWeight: 'bold',
-                      fontSize: 24,
-                      lineHeight: 24,
-                    }}>
-                    💎💎
-                  </Text>
-                  <Text
-                    style={{
-                      color: 'yellow',
-                      fontWeight: 'bold',
-                      fontSize: 24,
-                      lineHeight: 24,
-                    }}>
-                    💎💎💎
-                  </Text>
-                  <Text
-                    style={{
-                      color: 'green',
-                      fontWeight: 'bold',
-                      fontSize: 24,
-                      lineHeight: 24,
-                    }}>
-                    Rp. 84.000
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={{
-                    backgroundColor: '#ffb703',
-                    borderWidth: 2,
-                    borderColor: 'white',
-                    padding: 10,
-                    borderRadius: 10,
-                    margin: 5,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                  }}>
-                  <Text
-                    style={{
-                      color: 'yellow',
-                      fontWeight: 'bold',
-                      fontSize: 24,
-                      lineHeight: 24,
-                    }}>
-                    100
-                  </Text>
-                  <Text
-                    style={{
-                      color: 'yellow',
-                      fontWeight: 'bold',
-                      fontSize: 24,
-                      lineHeight: 24,
-                    }}>
-                    💎
-                  </Text>
-                  <Text
-                    style={{
-                      color: 'yellow',
-                      fontWeight: 'bold',
-                      fontSize: 24,
-                      lineHeight: 24,
-                    }}>
-                    💎💎
-                  </Text>
-                  <Text
-                    style={{
-                      color: 'yellow',
-                      fontWeight: 'bold',
-                      fontSize: 24,
-                      lineHeight: 24,
-                    }}>
-                    💎💎💎
-                  </Text>
-                  <Text
-                    style={{
-                      color: 'green',
-                      fontWeight: 'bold',
-                      fontSize: 24,
-                      lineHeight: 24,
-                    }}>
-                    Rp. 84.000
-                  </Text>
-                </TouchableOpacity>
+                    <Text
+                      style={{
+                        color: 'yellow',
+                        fontWeight: 'bold',
+                        fontSize: 24,
+                        lineHeight: 24,
+                      }}>
+                      {diamond.diamond}
+                    </Text>
+                    <Image source={diamond.images} alt="Topup Diamond" />
+                    <Text
+                      style={{
+                        color: 'green',
+                        fontWeight: 'bold',
+                        fontSize: 24,
+                        lineHeight: 24,
+                      }}>
+                      Rp. {diamond.price}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
               </Box>
               <Box
                 display="flex"
