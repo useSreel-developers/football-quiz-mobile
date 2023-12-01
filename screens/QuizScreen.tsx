@@ -14,6 +14,7 @@ import {
   socketConnectionAtom,
   temporaryAnswer,
 } from '../globals/GlobalData';
+import _ from 'lodash';
 
 const QuizScreen = ({navigation}: any) => {
   const [socketConnection] = useAtom(socketConnectionAtom);
@@ -51,7 +52,7 @@ const QuizScreen = ({navigation}: any) => {
         userAvatar: dataUser?.avatar?.avatar_url,
         roomId: roomIdQuiz,
         answer,
-        score: score,
+        score: _.random(1, 1000),
       });
     }
 

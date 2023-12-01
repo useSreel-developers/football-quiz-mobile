@@ -68,20 +68,12 @@ export const useQuestion = () => {
   useEffect(() => {
     const myInterval = () => {
       if (counter === 0) {
-        // if (currentQuestionIndex === dataQuestion.length - 1) {
-        //   // Last Question
-        //   // Show Modal Score
-        //   // navigation.navigate('Result');
-        // } else {
-        //   setCurrentQuestionIndex(currentQuestionIndex + 1);
-        // }
         setTimeout(() => {
           setCurrentOptionSelected(null);
           setCorrectOption(null);
           setShowNextButton(false);
           setIsOptionDisabled(false);
           setOptionsUser(null);
-          // setSelectedIndex(null);
           setCurrentQuestionIndex(currentQuestionIndex + 1);
           setAvatar(false);
           setTemporaryAnswerUser([]);
@@ -96,12 +88,6 @@ export const useQuestion = () => {
       clearTimeout(interval);
     };
   }, [counter]);
-
-  // useEffect(() => {
-  //   if (!interval) {
-  //     setCounter(10);
-  //   }
-  // }, [index]);
 
   return {
     currentQuestionIndex,

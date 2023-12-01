@@ -6,26 +6,30 @@ import {useDispatch} from 'react-redux';
 
 export const useLogin = () => {
   async function onGoogleButtonPress() {
-    // Check if your device supports Google Play
-    await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
-    // Get the users ID token
-    const userInfo = await GoogleSignin.signIn();
+    try {
+      // Check if your device supports Google Play
+      await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
+      // Get the users ID token
+      const userInfo = await GoogleSignin.signIn();
 
-    const body = {
-      name: userInfo.user.name,
-      email: userInfo.user.email,
-    };
-    await API.post('/google-auth', body).then(res => {
-      AsyncStorage.setItem('token', res.data.token);
-    });
+      const body = {
+        name: userInfo.user.name,
+        email: userInfo.user.email,
+      };
+      await API.post('/google-auth', body).then(res => {
+        AsyncStorage.setItem('token', res.data.token);
+      });
 
-    // Create a Google credential with the token
-    const googleCredential = auth.GoogleAuthProvider.credential(
-      userInfo.idToken,
-    );
+      // Create a Google credential with the token
+      const googleCredential = auth.GoogleAuthProvider.credential(
+        userInfo.idToken,
+      );
 
-    // Sign-in the user with the credential
-    return auth().signInWithCredential(googleCredential);
+      // Sign-in the user with the credential
+      return auth().signInWithCredential(googleCredential);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async function onGoogleLogoutPress() {

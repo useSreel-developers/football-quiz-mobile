@@ -44,14 +44,6 @@ const LoginScreen = ({navigation}: any) => {
       console.log(error);
     }
   }
-  const getToken = async () => {
-    const token = await AsyncStorage.getItem('token');
-    console.log(token);
-  };
-
-  useEffect(() => {
-    getToken();
-  });
 
   return (
     <LoginBG>

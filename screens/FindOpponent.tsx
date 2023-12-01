@@ -52,14 +52,7 @@ const FindOpponent = ({navigation}: any) => {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          {dataPlayer.length === 3 ? (
-            // <View>
-            //    <ActivityIndicator color="#36d7b7" />
-            //    <HStack space="sm">
-            //     <Spinner />
-            //     <Text size="md">Please Wait</Text>
-            //   </HStack>
-            //  </View>
+          {dataPlayer.length === 5 ? (
             <View>
               <AppLottieView
                 source={require('../assets/animation/AnimationLoading.json')}

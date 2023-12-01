@@ -8,7 +8,6 @@ import {Image} from '@gluestack-ui/themed';
 
 export const renderOptions = () => {
   const {
-    allQuestion,
     dataQuestion,
     currentQuestionIndex,
     counter,
@@ -18,11 +17,6 @@ export const renderOptions = () => {
   } = useQuestion();
   const [temporaryAnswerUser, setTemporaryAnswerUser] =
     useAtom(temporaryAnswer);
-
-  let optionToIndex;
-  // const handleAvatarOptionAnswer = () => {
-
-  // }
 
   return (
     <View style={{width: '100%'}}>
