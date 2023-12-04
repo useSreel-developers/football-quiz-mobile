@@ -5,6 +5,7 @@ import {
   ButtonText,
   Image,
   Pressable,
+  ScrollView,
 } from '@gluestack-ui/themed';
 import {TouchableOpacity, View} from 'react-native';
 import React, {useState, useEffect, useContext} from 'react';
@@ -306,10 +307,10 @@ const Home = ({navigation}: any) => {
             <Box
               style={{
                 position: 'absolute',
-                top: 80,
+                top: 30,
                 left: 0,
                 right: 0,
-                bottom: 60,
+                bottom: 20,
                 backgroundColor: 'green',
                 padding: 5,
                 borderRadius: 20,
@@ -317,79 +318,107 @@ const Home = ({navigation}: any) => {
                 justifyContent: 'space-evenly',
                 alignItems: 'center',
                 zIndex: 999,
+                flexWrap: 'wrap',
+                gap: 20,
               }}>
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 20,
+                  lineHeight: 20,
+                  fontWeight: 'bold',
+                }}>
+                Choose Your Avatar
+              </Text>
               <Box
                 style={{
                   display: 'flex',
                   flexDirection: 'row',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  gap: 5,
+                  gap: 40,
                   flexWrap: 'wrap',
+                  padding: 10,
+                  marginTop: 20,
+                  height: 420,
                 }}>
-                {dataAvatar.map((avatar: any, index: any) => {
-                  return (
-                    <TouchableOpacity
-                      onPress={() => {
-                        setAvatarId(avatar.id);
-                        setAvatarPrice(avatar.price);
-                      }}
-                      key={index}
-                      style={
-                        avatarId === avatar.id
-                          ? {
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: 10,
-                              borderWidth: 2,
-                              borderColor: 'white',
-                              padding: 10,
-                              borderRadius: 10,
-                              backgroundColor: '#ffb703',
-                            }
-                          : {
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: 10,
-                              borderWidth: 2,
-                              borderColor: 'green',
-                              padding: 10,
-                              borderRadius: 10,
-                              backgroundColor: '#ffb703',
-                            }
-                      }>
-                      <Image
-                        source={avatar.avatar_url}
-                        style={{
-                          borderRadius: 50,
-                          borderWidth: 2,
-                          borderColor: 'green',
+                <ScrollView horizontal={true}>
+                  {dataAvatar.map((avatar: any, index: any) => {
+                    return (
+                      <TouchableOpacity
+                        onPress={() => {
+                          setAvatarId(avatar.id);
+                          setAvatarPrice(avatar.price);
                         }}
-                        alt="ini gambara"
-                        role="img"
-                      />
-                      <Text
-                        style={{
-                          color: 'white',
-                          fontWeight: 'bold',
-                          fontSize: 24,
-                          lineHeight: 24,
-                        }}>
-                        {avatar.price === 0 || avatar.owned === true
-                          ? 'Free'
-                          : avatar.price}{' '}
-                        💎
-                      </Text>
-                    </TouchableOpacity>
-                  );
-                })}
+                        key={index}
+                        style={
+                          avatarId === avatar.id
+                            ? {
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 10,
+                                borderWidth: 2,
+                                borderColor: 'white',
+                                padding: 10,
+                                borderRadius: 10,
+                                backgroundColor: '#ffb703',
+                                width: 300,
+                                height: 400,
+                                justifyContent: 'space-evenly',
+                                marginRight: 10,
+                              }
+                            : {
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 10,
+                                borderWidth: 2,
+                                borderColor: 'green',
+                                padding: 10,
+                                borderRadius: 10,
+                                backgroundColor: '#ffb703',
+                                width: 300,
+                                height: 400,
+                                justifyContent: 'space-evenly',
+                                marginRight: 10,
+                              }
+                        }>
+                        <Image
+                          source={avatar.avatar_url}
+                          style={{
+                            borderRadius: 150,
+                            borderWidth: 2,
+                            borderColor: 'green',
+                            width: 250,
+                            height: 250,
+                          }}
+                          alt="ini gambara"
+                          role="img"
+                        />
+                        <Text
+                          style={{
+                            color: 'white',
+                            fontWeight: 'bold',
+                            fontSize: 40,
+                            lineHeight: 40,
+                          }}>
+                          {avatar.price === 0
+                            ? 'Free'
+                            : avatar.owned === true
+                            ? 'Use'
+                            : `${avatar.price} 💎`}
+                        </Text>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </ScrollView>
               </Box>
               <Box
                 display="flex"
                 flexDirection="row"
                 justifyContent="space-between"
                 alignItems="center"
-                gap={10}>
+                gap={10}
+                mb={30}>
                 <Button
                   style={{backgroundColor: 'red'}}
                   onPress={() => setIsAvatar(false)}>

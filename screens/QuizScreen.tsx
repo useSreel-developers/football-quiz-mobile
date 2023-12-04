@@ -148,8 +148,7 @@ const QuizScreen = ({navigation}: any) => {
             marginHorizontal: 10,
           }}>
           <Text style={{fontWeight: 'bold', color: '#ffb703'}}>
-            You've done ({currentQuestionIndex + 1}/{dataQuestion.length})
-            questions
+            You've done ({currentQuestionIndex}/{dataQuestion.length}) questions
           </Text>
         </View>
         {/* End Count Answer Question */}
@@ -166,16 +165,19 @@ const QuizScreen = ({navigation}: any) => {
             justifyContent: 'center',
             marginTop: 20,
             marginLeft: 10,
+            marginRight: 10,
           }}>
           <Text
             style={{
-              // backgroundColor: 'green',
+              backgroundColor: '#ffb703',
               borderRadius: 12,
               position: 'absolute',
               left: 0,
               height: 18,
               right: 0,
-              // width: `${progressPercentage}%`,
+              width: `${
+                (100 / dataQuestion.length) * currentQuestionIndex + 1
+              }%`,
               marginTop: 20,
             }}
           />
