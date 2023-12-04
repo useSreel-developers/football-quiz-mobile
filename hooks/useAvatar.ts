@@ -10,6 +10,7 @@ export const useAvatar = () => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user);
   const [avatarId, setAvatarId] = useState<number | null>(null);
+  const [diamondId, setDiamondId] = useState<number | null>(null);
   // const [updateUsername, setUpdateUsername] = useState<string | null>(null);
 
   const updateDataUser = async () => {
@@ -65,5 +66,5 @@ export const useAvatar = () => {
     updateDataUser();
   }, []);
 
-  return {avatar, user, avatarId, setAvatarId, updateDataUser};
+  return {avatar, user, avatarId, setAvatarId, updateDataUser, diamondId, setDiamondId};
 };

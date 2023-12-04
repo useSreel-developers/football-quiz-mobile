@@ -1,4 +1,4 @@
-export const diamondPrice = [
+export const listDiamond = [
   {
     id: 1,
     price: 50000,

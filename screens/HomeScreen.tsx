@@ -7,7 +7,7 @@ import {
   Pressable,
 } from '@gluestack-ui/themed';
 import {TouchableOpacity, View} from 'react-native';
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import Bg2 from '../components/homeBG';
 import {useLogin} from '../hooks/useLogin';
 import {useSelector, useDispatch} from 'react-redux';
@@ -22,17 +22,26 @@ import {useAtom} from 'jotai';
 import {useAvatar} from '../hooks/useAvatar';
 import AppLottieView from '../components/AppLottieView';
 import {setIsDiamond} from '../redux/sliceUser';
-import {diamondPrice} from '../data/diamond';
+import {listDiamond} from '../data/diamond';
+import _ from 'lodash';
+import axios from 'axios';
+import WebView from 'react-native-webview';
+import {ScrollView} from '@gluestack-ui/themed';
+// import {InAppBrowser} from 'react-native-inappbrowser-reborn';
 
 const Home = ({navigation}: any) => {
   const [socketConnection] = useAtom(socketConnectionAtom);
-  const {updateDataUser, avatarId, setAvatarId} = useAvatar();
+  const {updateDataUser, avatarId, setAvatarId, diamondId, setDiamondId} =
+    useAvatar();
 
   const [isAvatar, setIsAvatar] = React.useState(false);
   const {onGoogleLogoutPress} = useLogin();
   const [dataAvatar, setDataAvatar] = useState<any>(null);
   const [avatarPrice, setAvatarPrice] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [diamondPrice, setDiamondPrice] = useState<number | null>(null);
+  const [tokenMidtrans, setTokenMidtrans] = useState<string>('');
+  const [urlCallback, setUrlCallback] = useState<string>('');
 
   const isDiamond = useSelector((state: any) => state.user.isDiamond);
 
@@ -58,18 +67,19 @@ const Home = ({navigation}: any) => {
     refetchInterval: 1000,
   });
 
-  const getDataAvatar = async () => {
-    try {
-      const response = await API.get('/avatars', {
+  const {data: avatars} = useQuery({
+    queryKey: ['avatars'],
+    queryFn: async () => {
+      const {data} = await API.get('/avatars', {
         headers: {
           Authorization: `Bearer ${await AsyncStorage.getItem('token')}`,
         },
       });
-      setDataAvatar(response.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+      setIsLoading(false);
+      return data.data;
+    },
+    refetchInterval: 1000,
+  });
 
   const handleStartGame = () => {
     socketConnection.emit('matchmaking', {
@@ -80,10 +90,36 @@ const Home = ({navigation}: any) => {
     navigation.replace('FindOpponent');
   };
 
-  useEffect(() => {
-    // getUserData();
-    getDataAvatar();
-  }, []);
+  const handlePurchaseDiamond = async () => {
+    try {
+      const data = {
+        name: user?.name,
+        order_id: _.random(1, 1000),
+        total: diamondPrice,
+      };
+
+      const response = await axios.post(
+        'http://10.0.2.2:5000/api/payment/process-transaction',
+        data,
+      );
+
+      setTokenMidtrans(response.data.token);
+      setUrlCallback(response.data.url);
+      // console.log(response.data);
+
+      return <WebView source={{uri: urlCallback}} style={{flex: 1}} />;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // if (tokenMidtrans !== '') {
+  //   InAppBrowser.open(urlCallback);
+  // }
+
+  // useEffect(() => {
+  //   getDataAvatar();
+  // }, []);
 
   return (
     <Bg2>
@@ -245,21 +281,40 @@ const Home = ({navigation}: any) => {
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}>
-                {diamondPrice.map(diamond => (
+                {listDiamond.map(diamond => (
                   <TouchableOpacity
                     key={diamond.id}
-                    style={{
-                      backgroundColor: '#ffb703',
-                      borderWidth: 2,
-                      borderColor: 'white',
-                      padding: 10,
-                      borderRadius: 10,
-                      margin: 5,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                    }}>
+                    onPress={() => {
+                      setDiamondId(diamond.id);
+                      setDiamondPrice(diamond.price);
+                    }}
+                    style={
+                      diamondId === diamond.id
+                        ? {
+                            backgroundColor: '#ffb703',
+                            borderWidth: 2,
+                            borderColor: 'white',
+                            padding: 10,
+                            borderRadius: 10,
+                            margin: 5,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                          }
+                        : {
+                            backgroundColor: '#ffb703',
+                            borderWidth: 2,
+                            borderColor: 'green',
+                            padding: 10,
+                            borderRadius: 10,
+                            margin: 5,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                          }
+                    }>
                     <Text
                       style={{
                         color: 'yellow',
@@ -294,9 +349,17 @@ const Home = ({navigation}: any) => {
                   onPress={() => dispatch(setIsDiamond(!isDiamond))}>
                   <ButtonText>Cancel</ButtonText>
                 </Button>
-                <Button style={{backgroundColor: 'blue'}}>
-                  <ButtonText>Purchase</ButtonText>
-                </Button>
+                {diamondId === null ? (
+                  <Button style={{backgroundColor: 'grey'}}>
+                    <ButtonText>Purchase</ButtonText>
+                  </Button>
+                ) : (
+                  <Button
+                    onPress={handlePurchaseDiamond}
+                    style={{backgroundColor: 'blue'}}>
+                    <ButtonText>Purchase</ButtonText>
+                  </Button>
+                )}
               </Box>
             </Box>
           )}
@@ -306,10 +369,10 @@ const Home = ({navigation}: any) => {
             <Box
               style={{
                 position: 'absolute',
-                top: 80,
+                top: 30,
                 left: 0,
                 right: 0,
-                bottom: 60,
+                bottom: 20,
                 backgroundColor: 'green',
                 padding: 5,
                 borderRadius: 20,
@@ -317,92 +380,126 @@ const Home = ({navigation}: any) => {
                 justifyContent: 'space-evenly',
                 alignItems: 'center',
                 zIndex: 999,
+                flexWrap: 'wrap',
+                gap: 20,
               }}>
+              <Text
+                style={{
+                  color: 'white',
+                  fontSize: 20,
+                  lineHeight: 20,
+                  fontWeight: 'bold',
+                }}>
+                Choose Your Avatar
+              </Text>
               <Box
                 style={{
                   display: 'flex',
                   flexDirection: 'row',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  gap: 5,
+                  gap: 40,
                   flexWrap: 'wrap',
+                  padding: 10,
+                  marginTop: 20,
+                  height: 420,
                 }}>
-                {dataAvatar.map((avatar: any, index: any) => {
-                  return (
-                    <TouchableOpacity
-                      onPress={() => {
-                        setAvatarId(avatar.id);
-                        setAvatarPrice(avatar.price);
-                      }}
-                      key={index}
-                      style={
-                        avatarId === avatar.id
-                          ? {
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: 10,
-                              borderWidth: 2,
-                              borderColor: 'white',
-                              padding: 10,
-                              borderRadius: 10,
-                              backgroundColor: '#ffb703',
-                            }
-                          : {
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: 10,
-                              borderWidth: 2,
-                              borderColor: 'green',
-                              padding: 10,
-                              borderRadius: 10,
-                              backgroundColor: '#ffb703',
-                            }
-                      }>
-                      <Image
-                        source={avatar.avatar_url}
-                        style={{
-                          borderRadius: 50,
-                          borderWidth: 2,
-                          borderColor: 'green',
+                <ScrollView horizontal={true}>
+                  {avatars.map((avatar: any, index: any) => {
+                    return (
+                      <TouchableOpacity
+                        onPress={() => {
+                          setAvatarId(avatar.id);
+                          setAvatarPrice(avatar.price);
                         }}
-                        alt="ini gambara"
-                        role="img"
-                      />
-                      <Text
-                        style={{
-                          color: 'white',
-                          fontWeight: 'bold',
-                          fontSize: 24,
-                          lineHeight: 24,
-                        }}>
-                        {avatar.price === 0 || avatar.owned === true
-                          ? 'Free'
-                          : avatar.price}{' '}
-                        💎
-                      </Text>
-                    </TouchableOpacity>
-                  );
-                })}
+                        key={index}
+                        style={
+                          avatarId === avatar.id
+                            ? {
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 10,
+                                borderWidth: 2,
+                                borderColor: 'white',
+                                padding: 10,
+                                borderRadius: 10,
+                                backgroundColor: '#ffb703',
+                                width: 300,
+                                height: 400,
+                                justifyContent: 'space-evenly',
+                                marginRight: 10,
+                              }
+                            : {
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 10,
+                                borderWidth: 2,
+                                borderColor: 'green',
+                                padding: 10,
+                                borderRadius: 10,
+                                backgroundColor: '#ffb703',
+                                width: 300,
+                                height: 400,
+                                justifyContent: 'space-evenly',
+                                marginRight: 10,
+                              }
+                        }>
+                        <Image
+                          source={avatar.avatar_url}
+                          style={{
+                            borderRadius: 150,
+                            borderWidth: 2,
+                            borderColor: 'green',
+                            width: 250,
+                            height: 250,
+                          }}
+                          alt="ini gambar"
+                          role="img"
+                        />
+                        <Text
+                          style={{
+                            color: 'white',
+                            fontWeight: 'bold',
+                            fontSize: 40,
+                            lineHeight: 40,
+                          }}>
+                          {avatar.price === 0
+                            ? 'Free'
+                            : avatar.owned === true
+                            ? 'Use'
+                            : `${avatar.price} 💎`}
+                        </Text>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </ScrollView>
               </Box>
               <Box
                 display="flex"
                 flexDirection="row"
                 justifyContent="space-between"
                 alignItems="center"
-                gap={10}>
+                gap={10}
+                mb={30}>
                 <Button
                   style={{backgroundColor: 'red'}}
                   onPress={() => setIsAvatar(false)}>
                   <ButtonText>Cancel</ButtonText>
                 </Button>
-                <Button
-                  onPress={() => {
-                    updateDataUser();
-                    setIsAvatar(false);
-                  }}
-                  style={{backgroundColor: 'blue'}}>
-                  <ButtonText>Save</ButtonText>
-                </Button>
+                {avatarId === null ? (
+                  <Button disabled style={{backgroundColor: 'grey'}}>
+                    <ButtonText>Save</ButtonText>
+                  </Button>
+                ) : (
+                  <Button
+                    onPress={() => {
+                      updateDataUser();
+                      setIsAvatar(false);
+                    }}
+                    style={{backgroundColor: 'blue'}}>
+                    <ButtonText>Save</ButtonText>
+                  </Button>
+                )}
               </Box>
             </Box>
           )}
