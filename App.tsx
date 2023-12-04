@@ -21,6 +21,7 @@ import Diamond from './components/Diamond';
 import {useLogin} from './hooks/useLogin';
 import useName from './components/UserName';
 import UserName from './components/UserName';
+import PaymentScreen from './screens/PaymentScreen';
 
 // const userName = useName();
 const App = () => {
@@ -58,15 +59,14 @@ const App = () => {
                 component={HomeScreen}
                 options={({navigation}) => ({
                   title: ``,
-                  // headerTitleAlign: 'center',
-                  // headerTitleStyle: {
-                  //   color: 'white',
-                  //   fontWeight: 'bold',
-                  //   fontSize: 20,
-                  // },
                   headerLeft: () => (
                     <View
-                      style={{display: 'flex', flexDirection: 'row', gap: 10, alignItems: 'center'}}>
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        gap: 10,
+                        alignItems: 'center',
+                      }}>
                       <TouchableOpacity
                         onPress={() =>
                           onGoogleLogoutPress().then(() =>
@@ -113,6 +113,11 @@ const App = () => {
               <Stack.Screen
                 name="Result"
                 component={ResultScreen}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="Payment"
+                component={PaymentScreen}
                 options={{headerShown: false}}
               />
             </Stack.Navigator>

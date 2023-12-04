@@ -94,7 +94,7 @@ const Home = ({navigation}: any) => {
     try {
       const data = {
         name: user?.name,
-        order_id: _.random(1, 1000),
+        order_id: _.random(1, 10000),
         total: diamondPrice,
       };
 
@@ -102,12 +102,15 @@ const Home = ({navigation}: any) => {
         'http://10.0.2.2:5000/api/payment/process-transaction',
         data,
       );
+      console.log(response.data);
 
       setTokenMidtrans(response.data.token);
-      setUrlCallback(response.data.url);
-      // console.log(response.data);
+      // setUrlCallback(response.data.url);
+      console.log(urlCallback);
 
-      return <WebView source={{uri: urlCallback}} style={{flex: 1}} />;
+      navigation.navigate('Payment', {
+        url: response.data.url,
+      });
     } catch (error) {
       console.log(error);
     }
