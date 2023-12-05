@@ -1,7 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import {Box, Text, ButtonText, Image, Button} from '@gluestack-ui/themed';
 import {View, Alert} from 'react-native';
-import {socketConnectionAtom} from '../globals/GlobalData';
+import {
+  playerQuiz,
+  socketConnectionAtom,
+  timerQuiz,
+} from '../globals/GlobalData';
 import {useAtom} from 'jotai';
 import {HStack} from '@gluestack-ui/themed';
 import {Spinner} from '@gluestack-ui/themed';
@@ -10,9 +14,9 @@ import Bg1 from './../components/Bg1';
 import {roomId, questions} from '../globals/GlobalData';
 
 const FindOpponent = ({navigation}: any) => {
-  const [time, setTime] = useState<any>();
-  const [dataPlayer, setDataPlayer] = useState<any>([]);
   const [socketConnection] = useAtom(socketConnectionAtom);
+  const [dataPlayer, setDataPlayer] = useAtom(playerQuiz);
+  const [time, setTime] = useAtom(timerQuiz);
   const [roomIdQuiz, setRoomIdQuiz] = useAtom(roomId);
   const [dataQuestion, setDataQuestion] = useAtom(questions);
 

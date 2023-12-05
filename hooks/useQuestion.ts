@@ -3,6 +3,7 @@ import {data} from '../data/question';
 import {useAtom} from 'jotai';
 import {
   options,
+  questionIndex,
   questions,
   socketConnectionAtom,
   temporaryAnswer,
@@ -12,7 +13,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const useQuestion = () => {
   const allQuestion = data;
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [currentQuestionIndex, setCurrentQuestionIndex] =
+    useAtom(questionIndex);
   const [currentOptionSelected, setCurrentOptionSelected] = useState(null);
   const [correctOption, setCorrectOption] = useState<string | null>(null);
   const [isOptionDisabled, setIsOptionDisabled] = useState(false);
@@ -50,7 +52,11 @@ export const useQuestion = () => {
     getDataUser();
   }, []);
 
-  const validateAnswer = (selectedOption: any, selectedOptionIndex: any) => {
+  const validateAnswer = (
+    selectedOption: any,
+    selectedOptionIndex: any,
+    timer: number,
+  ) => {
     let correct_option = dataQuestion[currentQuestionIndex]['correct_option'];
     setCurrentOptionSelected(selectedOption);
     setCorrectOption(correct_option);
@@ -61,23 +67,23 @@ export const useQuestion = () => {
     setSelectedIndex(selectedOptionIndex);
     if (selectedOption === correct_option) {
       // set score
-      setScore(score => score + counter * 100);
+      setScore(score => score + timer * 100);
     }
   };
+
   // refetch interval question
   useEffect(() => {
     const myInterval = () => {
       if (counter === 0) {
         setTimeout(() => {
+          setTemporaryAnswerUser([]);
           setCurrentOptionSelected(null);
           setCorrectOption(null);
-          setShowNextButton(false);
           setIsOptionDisabled(false);
           setOptionsUser(null);
-          setCurrentQuestionIndex(currentQuestionIndex + 1);
           setAvatar(false);
-          setTemporaryAnswerUser([]);
-        }, 5000);
+          setCurrentQuestionIndex(currentQuestionIndex + 1);
+        }, 4000);
         setAvatar(true);
       }
     };

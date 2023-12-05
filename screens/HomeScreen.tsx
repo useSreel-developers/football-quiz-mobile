@@ -99,7 +99,7 @@ const Home = ({navigation}: any) => {
       };
 
       const response = await axios.post(
-        'http://10.0.2.2:5000/api/payment/process-transaction',
+        ' https://7592-2404-8000-1004-dc9-79c9-48d9-ab16-3faf.ngrok-free.app/api/payment/process-transaction',
         data,
       );
       console.log(response.data);
@@ -115,14 +115,6 @@ const Home = ({navigation}: any) => {
       console.log(error);
     }
   };
-
-  // if (tokenMidtrans !== '') {
-  //   InAppBrowser.open(urlCallback);
-  // }
-
-  // useEffect(() => {
-  //   getDataAvatar();
-  // }, []);
 
   return (
     <Bg2>

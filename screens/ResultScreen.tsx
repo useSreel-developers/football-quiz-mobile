@@ -3,20 +3,63 @@ import React, {useState, useEffect} from 'react';
 import WinnerBg from '../components/WinnerBg';
 import {useRoute} from '@react-navigation/native';
 import FontAwesome6 from 'react-native-vector-icons//FontAwesome6';
-import {socketConnectionAtom} from '../globals/GlobalData';
+import {
+  playerQuiz,
+  questionIndex,
+  questions,
+  roomId,
+  socketConnectionAtom,
+  timerQuiz,
+} from '../globals/GlobalData';
 import {useAtom} from 'jotai';
 import {TypeWinner} from '../Type/TypeWinner';
+import {useQuery} from '@tanstack/react-query';
+import {API} from '../utlis/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ResultScreen = ({navigation}: any) => {
   const route: any = useRoute();
   const points: any = route?.params?.points;
   const [socketConnection] = useAtom(socketConnectionAtom);
   const [dataWinner, setDataWinner] = useState<TypeWinner[]>([]);
+  const [dataPlayer, setDataPlayer] = useAtom(playerQuiz);
+  const [time, setTime] = useAtom(timerQuiz);
+  const [roomIdQuiz, setRoomIdQuiz] = useAtom(roomId);
+  const [dataQuestion, setDataQuestion] = useAtom(questions);
+  const [currentQuestionIndex, setCurrentQuestionIndex] =
+    useAtom(questionIndex);
+
+  const {data: user} = useQuery({
+    queryKey: ['user'],
+    queryFn: async () => {
+      const {data} = await API.get('/check', {
+        headers: {
+          Authorization: `Bearer ${await AsyncStorage.getItem('token')}`,
+        },
+      });
+      return data.data;
+    },
+  });
+
+  const handleStartGame = () => {
+    socketConnection.emit('matchmaking', {
+      userId: user?.id,
+      userName: user?.name,
+      userAvatar: user?.avatar?.avatar_url,
+    });
+    navigation.replace('FindOpponent');
+  };
 
   useEffect(() => {
     socketConnection.on('matchOver', res => {
       setDataWinner(res.finalScore);
     });
+
+    setDataPlayer([]);
+    setTime(0);
+    setRoomIdQuiz('');
+    setDataQuestion([]);
+    setCurrentQuestionIndex(0);
   }, []);
 
   const sortingWinnerScore = dataWinner.sort((a, b) => b.score - a.score);
@@ -273,7 +316,9 @@ const ResultScreen = ({navigation}: any) => {
               />
               <Button
                 title="PLAY AGAIN"
-                onPress={() => navigation.navigate('FindOpponent')}
+                onPress={() => {
+                  handleStartGame();
+                }}
                 color={'blue'}
               />
             </View>

@@ -120,7 +120,7 @@ export const renderOptions = () => {
           } else {
             return (
               <TouchableOpacity
-                onPress={() => validateAnswer(option, index)}
+                onPress={() => validateAnswer(option, index, counter)}
                 disabled={false}
                 key={index}
                 style={{

@@ -95,7 +95,7 @@ const QuizScreen = ({navigation}: any) => {
           }}>
           <FontAwesome6 name="trophy" size={20} color="#ffb703" />
           <Text style={{fontSize: 20, fontWeight: 'bold', color: '#ffb703'}}>
-            {/* {score} */}
+            {score}
           </Text>
         </View>
 
