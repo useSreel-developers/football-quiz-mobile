@@ -42,6 +42,7 @@ const Home = ({navigation}: any) => {
   const [diamondPrice, setDiamondPrice] = useState<number | null>(null);
   const [tokenMidtrans, setTokenMidtrans] = useState<string>('');
   const [urlCallback, setUrlCallback] = useState<string>('');
+  const [diamondTotal, setDiamondTotal] = useState<number>(0);
 
   const isDiamond = useSelector((state: any) => state.user.isDiamond);
 
@@ -94,12 +95,14 @@ const Home = ({navigation}: any) => {
     try {
       const data = {
         name: user?.name,
+        email: user?.email,
         order_id: _.random(1, 10000),
         total: diamondPrice,
+        diamond: diamondTotal,
       };
 
       const response = await axios.post(
-        ' https://7592-2404-8000-1004-dc9-79c9-48d9-ab16-3faf.ngrok-free.app/api/payment/process-transaction',
+        'http://10.0.2.2:5000/api/payment/process-transaction',
         data,
       );
       console.log(response.data);
@@ -282,6 +285,7 @@ const Home = ({navigation}: any) => {
                     onPress={() => {
                       setDiamondId(diamond.id);
                       setDiamondPrice(diamond.price);
+                      setDiamondTotal(diamond.diamond);
                     }}
                     style={
                       diamondId === diamond.id

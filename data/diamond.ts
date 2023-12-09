@@ -25,13 +25,13 @@ export const listDiamond = [
   },
   {
     id: 5,
-    price: 200000,
+    price: 2000000,
     diamond: 1000,
     images: require('../assets/diamond/diamond-5.png'),
   },
   {
     id: 6,
-    price: 500000,
+    price: 5000000,
     diamond: 5000,
     images: require('../assets/diamond/diamond-6.png'),
   },

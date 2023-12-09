@@ -4,7 +4,7 @@ import {TypeQuestion} from '../Type/TypeQuestion';
 import {TypeTemporartyAnswer} from '../Type/TypeTemporaryAnswer';
 
 export const socketConnectionAtom = atom<Socket>(
-  io('https://1d85-2404-8000-1004-dc9-7093-8708-1180-fbe.ngrok-free.app'),
+  io('https://football-quiz.onrender.com'),
 );
 
 export const playerQuiz = atom<any>([]);
